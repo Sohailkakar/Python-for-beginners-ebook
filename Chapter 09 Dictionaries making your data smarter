@@ -1,0 +1,88 @@
+# Chapter 8: Dictionaries – Making Your Data Smarter
+
+# A dictionary in Python is used to store data in key-value pairs.
+# It's like a mini database where each value has a name (the key).
+
+# Example 1: Creating and printing a dictionary
+person = {
+    "name": "Sohail",
+    "age": 25,
+    "city": "Karachi"
+}
+print("Person info:", person)
+
+# Example 2: Accessing values by keys
+print("Name:", person["name"])
+print("City:", person["city"])
+
+# Example 3: Adding new key-value pairs
+person["profession"] = "Programmer"
+print("Updated person:", person)
+
+# Example 4: Changing existing values
+person["age"] = 26
+print("After birthday:", person)
+
+# Example 5: Removing a key-value pair
+del person["city"]
+print("After removing city:", person)
+
+# Example 6: Looping through a dictionary
+for key, value in person.items():
+    print(key + ":", value)
+
+# Example 7: Using get() to avoid errors when key is missing
+print("Country:", person.get("country", "Not specified"))
+
+# In this chapter, you learned:
+# - How to create, access, add, change, and delete dictionary items
+# - How to loop through dictionaries safely
+
+
+# 🛠️ Mini Project: Simple Contact Book
+
+# In this project, users can add, view, and search contacts stored in a dictionary.
+
+contacts = {}
+
+print("\n Welcome to Your Contact Book!")
+
+while True:
+    print("\nChoose an option:")
+    print("1. Add Contact")
+    print("2. View All Contacts")
+    print("3. Search Contact by Name")
+    print("4. Exit")
+
+    choice = input("Enter your choice (1-4): ")
+
+    if choice == "1":
+        name = input("Enter contact name: ").strip()
+        phone = input("Enter phone number: ").strip()
+        if name and phone:
+            contacts[name] = phone
+            print(f"{name} added with number {phone}.")
+        else:
+            print("Both name and phone number are required.")
+
+    elif choice == "2":
+        if contacts:
+            print("\nYour Contacts:")
+            for name, number in contacts.items():
+                print(f"{name}: {number}")
+        else:
+            print("No contacts saved yet.")
+
+    elif choice == "3":
+        search_name = input("Enter the name to search: ").strip()
+        if search_name in contacts:
+            print(f"{search_name}'s number is {contacts[search_name]}")
+        else:
+            print("Contact not found.")
+
+    elif choice == "4":
+        print("Goodbye! ")
+        break
+
+    else:
+        print("Invalid choice. Please try again.")
