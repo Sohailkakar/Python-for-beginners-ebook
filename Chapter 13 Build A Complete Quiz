@@ -1,0 +1,61 @@
+# Chapter 12: Building a Quiz Game – Test What You’ve Learned
+
+# In this chapter, you’ll combine everything you’ve learned so far to build a simple Quiz Game.
+# You'll use variables, lists, loops, conditionals, and input/output.
+
+# Let's start by creating the questions and answers.
+
+questions = [
+    {
+        "question": "What does CPU stand for?",
+        "options": ["Central Processing Unit", "Computer Personal Unit", "Central Programming Unit"],
+        "answer": "Central Processing Unit"
+    },
+    {
+        "question": "Which keyword is used to define a function in Python?",
+        "options": ["func", "define", "def"],
+        "answer": "def"
+    },
+    {
+        "question": "Which data type is used to store True or False?",
+        "options": ["String", "Boolean", "Integer"],
+        "answer": "Boolean"
+    }
+]
+
+# We will create a function to run the quiz
+def run_quiz(questions):
+    score = 0  # To keep track of correct answers
+
+    for q in questions:
+        print("\n" + q["question"])
+        for idx, option in enumerate(q["options"], start=1):
+            print(f"{idx}. {option}")
+
+        try:
+            choice = int(input("Enter your choice (1/2/3): "))
+            if q["options"][choice - 1].lower() == q["answer"].lower():
+                print(" Correct!")
+                score += 1
+            else:
+                print(f" Incorrect. The correct answer was: {q['answer']}")
+        except (ValueError, IndexError):
+            print(" Invalid input. Moving to the next question.")
+
+    print(f"\nYour final score is: {score} out of {len(questions)}")
+
+    if score == len(questions):
+        print(" Excellent! You got all answers right.")
+    elif score > 0:
+        print(" Good effort! Keep practising.")
+    else:
+        print(" Don’t worry, review the chapters and try again.")
+
+# Running the quiz
+print(" Welcome to the Python Quiz Game!")
+run_quiz(questions)
+
+# In this chapter, you learned:
+# - How to store multiple questions using lists and dictionaries
+# - How to create a function that handles a complete interactive quiz
+# - How to use loops, conditionals, and inputs together in one project
