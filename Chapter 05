@@ -1,0 +1,58 @@
+# Chapter 4: Making Decisions with if Statements
+
+# In Python, 'if' statements help us make decisions based on conditions.
+
+# Example 1: Simple if statement
+age = int(input("Enter your age: "))
+
+if age >= 18:
+    print("You are an adult.")
+else:
+    print("You are under 18.")
+
+# The 'if' block runs if the condition is True.
+# The 'else' block runs if the condition is False.
+
+# Example 2: Using elif for multiple choices
+temperature = int(input("Enter the current temperature: "))
+
+if temperature > 30:
+    print("It's a hot day.")
+elif temperature > 20:
+    print("It's a nice day.")
+elif temperature > 10:
+    print("It's a bit cold.")
+else:
+    print("It's very cold!")
+
+# Example 3: Checking user input with if statements
+answer = input("Do you like Python? (yes/no): ")
+
+if answer.lower() == "yes":
+    print("That's awesome!")
+elif answer.lower() == "no":
+    print("Give it some time, you might enjoy it!")
+else:
+    print("I didn't understand your answer.")
+
+# Example 4: Using logical operators (and, or)
+user = input("Enter username: ")
+password = input("Enter password: ")
+
+if user == "admin" and password == "1234":
+    print("Login successful!")
+else:
+    print("Incorrect username or password.")
+
+# Example 5: Using 'not' operator
+logged_in = False
+
+if not logged_in:
+    print("Please log in to continue.")
+
+# In this chapter, we learned:
+# - How to write 'if', 'elif', and 'else' blocks
+# - How to use comparison operators (==, >, <, >=, <=)
+# - How to use logical operators (and, or, not)
+
+# These decision-making skills are the foundation for creating interactive programs.
