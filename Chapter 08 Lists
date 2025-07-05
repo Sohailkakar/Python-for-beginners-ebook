@@ -1,0 +1,104 @@
+# Chapter 7: Lists – Handling Many Values at Once
+
+# A list is a collection of items stored in a single variable.
+# Lists can store numbers, text, or even other lists.
+
+# Example 1: Creating and printing a list
+fruits = ["apple", "banana", "cherry", "mango"]
+print("Fruit list:", fruits)
+
+# Example 2: Accessing list items by index (starts from 0)
+print("First fruit:", fruits[0])
+print("Second fruit:", fruits[1])
+
+# Example 3: Changing an item in a list
+fruits[2] = "orange"
+print("Updated fruit list:", fruits)
+
+# Example 4: Adding items to a list
+fruits.append("grape")
+print("After adding grape:", fruits)
+
+# Example 5: Removing items from a list
+fruits.remove("banana")
+print("After removing banana:", fruits)
+
+# Example 6: Looping through a list
+for fruit in fruits:
+    print("I like", fruit)
+
+# Example 7: Checking if an item exists in the list
+if "apple" in fruits:
+    print("Apple is in the list.")
+
+# Example 8: Length of the list
+print("Number of fruits:", len(fruits))
+
+# Example 9: Sorting a list
+numbers = [4, 2, 9, 1, 5]
+numbers.sort()
+print("Sorted numbers:", numbers)
+
+# In this chapter, you learned:
+# - Creating lists
+# - Accessing, modifying, adding, and removing items
+# - Looping through lists
+# - Sorting and checking list length
+
+
+# 🛠️ Mini Project: Favourite Movies Manager
+
+# This project lets users add, view, and remove favourite movies using a list.
+
+movies = []
+
+print("\n🎬 Welcome to Your Favourite Movies Manager!")
+
+while True:
+    print("\nChoose an option:")
+    print("1. Add a movie")
+    print("2. View movies")
+    print("3. Remove a movie")
+    print("4. Exit")
+
+    choice = input("Enter your choice (1-4): ")
+
+    if choice == "1":
+        movie = input("Enter the name of the movie: ").strip()
+        if movie:
+            movies.append(movie)
+            print(movie, "has been added to your list.")
+        else:
+            print("Please enter a valid movie name.")
+
+    elif choice == "2":
+        if movies:
+            print("\nYour Favourite Movies:")
+            for idx, m in enumerate(movies, start=1):
+                print(f"{idx}. {m}")
+        else:
+            print("Your movie list is empty.")
+
+    elif choice == "3":
+        if movies:
+            print("\nCurrent Movies:")
+            for idx, m in enumerate(movies, start=1):
+                print(f"{idx}. {m}")
+            try:
+                remove_index = int(input("Enter the movie number to remove: ")) - 1
+                if 0 <= remove_index < len(movies):
+                    removed = movies.pop(remove_index)
+                    print(removed, "has been removed.")
+                else:
+                    print("Invalid movie number.")
+            except ValueError:
+                print("Please enter a valid number.")
+        else:
+            print("No movies to remove.")
+
+    elif choice == "4":
+        print("Goodbye! ")
+        break
+
+    else:
+        print("Invalid choice. Please try again.")
