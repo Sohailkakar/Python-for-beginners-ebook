@@ -1,0 +1,25 @@
+# Chapter 1: Hello Python
+
+# This is your very first Python program.
+# The 'print()' function is used to display text on the screen.
+
+print("Hello, World!")
+
+# In Python, you can print any message by writing it inside the print() function and using quotation marks.
+# You can use either single quotes (' ') or double quotes (" ") for text (they both work).
+
+print('Welcome to Python Programming!')
+
+# You can also print numbers directly.
+print(123)
+
+# Let's print a simple math calculation.
+print(5 + 3)  # This will print: 8
+
+# Python ignores anything written after the '#' symbol.
+# These are called 'comments' and are useful for explaining your code.
+
+# Let's try printing multiple messages:
+print("Learning Python is fun!")
+print("You're going to build real projects step by step.")
+print("Let's keep going!")
