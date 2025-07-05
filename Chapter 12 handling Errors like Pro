@@ -1,0 +1,86 @@
+# Chapter 11: Handling Errors Like a Pro
+
+# Errors (also called exceptions) happen when something goes wrong in the program.
+# We use try-except blocks to handle these errors without crashing the program.
+
+# Example 1: Handling ValueError
+try:
+    age = int(input("Enter your age: "))
+    print("Next year you'll be:", age + 1)
+except ValueError:
+    print("Please enter a valid number.")
+
+# Example 2: Handling ZeroDivisionError
+try:
+    num1 = int(input("Enter a number: "))
+    num2 = int(input("Enter another number: "))
+    result = num1 / num2
+    print("Result:", result)
+except ZeroDivisionError:
+    print("You can't divide by zero.")
+except ValueError:
+    print("Only numbers are allowed.")
+
+# Example 3: Using finally
+try:
+    file = open("somefile.txt", "r")
+    print(file.read())
+except FileNotFoundError:
+    print(" File not found.")
+finally:
+    print("This message always appears.")
+
+# In this chapter, you learned:
+# - How to use try, except, finally
+# - Handling common errors like ValueError, ZeroDivisionError, FileNotFoundError
+
+
+#  Mini Project: Safe Calculator with Error Handling
+
+def safe_add(x, y):
+    return x + y
+
+def safe_subtract(x, y):
+    return x - y
+
+def safe_multiply(x, y):
+    return x * y
+
+def safe_divide(x, y):
+    try:
+        return x / y
+    except ZeroDivisionError:
+        return "Cannot divide by zero!"
+
+print("\n Welcome to Safe Calculator!")
+
+while True:
+    print("\nChoose an operation:")
+    print("1. Add")
+    print("2. Subtract")
+    print("3. Multiply")
+    print("4. Divide")
+    print("5. Exit")
+
+    choice = input("Enter choice (1-5): ")
+
+    if choice == "5":
+        print("Goodbye!")
+        break
+
+    try:
+        num1 = float(input("Enter first number: "))
+        num2 = float(input("Enter second number: "))
+
+        if choice == "1":
+            print("Result:", safe_add(num1, num2))
+        elif choice == "2":
+            print("Result:", safe_subtract(num1, num2))
+        elif choice == "3":
+            print("Result:", safe_multiply(num1, num2))
+        elif choice == "4":
+            print("Result:", safe_divide(num1, num2))
+        else:
+            print("Invalid choice.")
+    except ValueError:
+        print("Invalid number. Please try again.")
