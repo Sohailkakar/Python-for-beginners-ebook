@@ -1,0 +1,90 @@
+# Chapter 13: Build a To-Do List App – Your First Complete Application
+
+# In this final project, you’ll build a simple To-Do List app that allows users to:
+# - Add tasks
+# - View tasks
+# - Remove tasks
+# - Exit the app
+
+# We’ll use:
+# - Lists to store tasks
+# - Loops for interaction
+# - Functions to keep code organised
+# - File handling to save and load tasks
+
+
+# Function to load tasks from file
+def load_tasks():
+    try:
+        with open("tasks.txt", "r") as file:
+            tasks = [line.strip() for line in file.readlines()]
+        return tasks
+    except FileNotFoundError:
+        return []
+
+# Function to save tasks to file
+def save_tasks(tasks):
+    with open("tasks.txt", "w") as file:
+        for task in tasks:
+            file.write(task + "\n")
+
+# Function to display tasks
+def show_tasks(tasks):
+    if not tasks:
+        print(" Your to-do list is empty.")
+    else:
+        print("\n Your To-Do List:")
+        for idx, task in enumerate(tasks, start=1):
+            print(f"{idx}. {task}")
+
+# Main function to run the To-Do List App
+def todo_app():
+    tasks = load_tasks()
+
+    print("\n Welcome to Your To-Do List App!")
+
+    while True:
+        print("\nChoose an option:")
+        print("1. View tasks")
+        print("2. Add task")
+        print("3. Remove task")
+        print("4. Exit")
+
+        choice = input("Enter choice (1-4): ")
+
+        if choice == "1":
+            show_tasks(tasks)
+
+        elif choice == "2":
+            new_task = input("Enter your new task: ").strip()
+            if new_task:
+                tasks.append(new_task)
+                save_tasks(tasks)
+                print(" Task added!")
+
+        elif choice == "3":
+            show_tasks(tasks)
+            try:
+                task_number = int(input("Enter task number to remove: "))
+                if 1 <= task_number <= len(tasks):
+                    removed_task = tasks.pop(task_number - 1)
+                    save_tasks(tasks)
+                    print(f" Removed: {removed_task}")
+                else:
+                    print("Invalid task number.")
+            except ValueError:
+                print("Please enter a valid number.")
+
+        elif choice == "4":
+            print(" Goodbye! Your tasks are saved.")
+            break
+
+        else:
+            print("Invalid choice. Please try again.")
+
+# Run the To-Do App
+todo_app()
+
+# In this chapter, you brought together everything you’ve learned:
+# - Lists, loops, conditionals, functions, file handling, and user input.
+# This is your first real app—and the beginning of many more to come!
