@@ -1,0 +1,40 @@
+# Chapter 3: Taking Input from Users
+
+# In Python, we can ask the user to enter something by using the 'input()' function.
+
+# Example: Asking the user's name
+name = input("What is your name? ")
+print("Hello,", name)
+
+# The input() function **always returns text (called a 'string')**.
+
+# Example: Asking the user's age (but still treated as text)
+age = input("How old are you? ")
+print("You are", age, "years old.")
+
+# If we want to do **math** with the user's input, we must **convert the input to a number**.
+
+# Example: Adding numbers after converting input
+num1 = input("Enter the first number: ")
+num2 = input("Enter the second number: ")
+
+# Convert the input from string to integer using int()
+num1 = int(num1)
+num2 = int(num2)
+
+total = num1 + num2
+print("The total is:", total)
+
+# Alternatively, you can convert to float if you expect decimal numbers:
+price = float(input("Enter the price of an item: "))
+quantity = int(input("Enter how many items: "))
+total_price = price * quantity
+print("Total price is:", total_price)
+
+# Another example: Creating a short introduction using multiple inputs
+first_name = input("Enter your first name: ")
+city = input("Enter your city: ")
+
+print("Nice to meet you,", first_name + " from " + city + "!")
+
+# That’s the basics of taking input, converting data types, and displaying results!
