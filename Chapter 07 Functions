@@ -1,0 +1,95 @@
+# Chapter 6: Functions – Reusable Blocks of Code
+
+# A function is a block of code that performs a specific task.
+# Functions help us write cleaner, reusable, and more organised code.
+
+# Example 1: Defining and calling a simple function
+def greet():
+    print("Hello, welcome to the world of functions!")
+
+# Calling the function
+greet()
+
+# Example 2: Function with one parameter
+def greet_user(name):
+    print("Hello,", name)
+
+greet_user("Sohail")
+
+# Example 3: Function with multiple parameters
+def add_numbers(a, b):
+    result = a + b
+    print("The sum is:", result)
+
+add_numbers(5, 10)
+
+# Example 4: Function that returns a value
+def multiply(x, y):
+    return x * y
+
+product = multiply(4, 3)
+print("The product is:", product)
+
+# Example 5: Using default parameter values
+def welcome_message(name="Guest"):
+    print("Welcome,", name)
+
+welcome_message()
+welcome_message("Sohail")
+
+# Functions can also be called inside loops or other functions, making them very powerful.
+
+# In this chapter, you learned:
+# - How to create and call functions
+# - How to pass arguments
+# - How to return values
+# - How to use default values
+
+
+# 🛠️ Mini Project: Basic Calculator Using Functions
+
+# Let's build a simple calculator where each operation is handled by a separate function.
+
+def add(a, b):
+    return a + b
+
+def subtract(a, b):
+    return a - b
+
+def multiply(a, b):
+    return a * b
+
+def divide(a, b):
+    if b == 0:
+        return "Error: Cannot divide by zero!"
+    return a / b
+
+print("\nWelcome to the Function-Based Calculator!")
+
+while True:
+    print("\nChoose an operation:")
+    print("1. Add")
+    print("2. Subtract")
+    print("3. Multiply")
+    print("4. Divide")
+    print("5. Exit")
+
+    choice = input("Enter choice (1-5): ")
+
+    if choice == "5":
+        print("Thank you for using the calculator. Goodbye!")
+        break
+
+    num1 = float(input("Enter first number: "))
+    num2 = float(input("Enter second number: "))
+
+    if choice == "1":
+        print("Result:", add(num1, num2))
+    elif choice == "2":
+        print("Result:", subtract(num1, num2))
+    elif choice == "3":
+        print("Result:", multiply(num1, num2))
+    elif choice == "4":
+        print("Result:", divide(num1, num2))
+    else:
+        print("Invalid choice. Please select a valid option.")
