@@ -1,0 +1,65 @@
+# Chapter 9: Strings and Text – Playing with Words in Python
+
+# In Python, strings are pieces of text written inside quotes.
+
+# Example 1: Basic string and printing
+message = "Hello, Python!"
+print(message)
+
+# Example 2: String concatenation (joining)
+first_name = "Sohail"
+last_name = "Ahmed"
+full_name = first_name + " " + last_name
+print("Full Name:", full_name)
+
+# Example 3: Using f-strings for cleaner formatting
+age = 25
+print(f"My name is {full_name} and I am {age} years old.")
+
+# Example 4: String methods
+text = "python programming"
+
+print(text.upper())     # Converts to uppercase
+print(text.lower())     # Converts to lowercase
+print(text.title())     # Capitalises each word
+print(text.replace("python", "Java"))  # Replaces text
+print(len(text))        # Length of string
+
+# Example 5: Checking content in strings
+if "python" in text:
+    print("The word 'python' is present.")
+
+# Example 6: Splitting and joining strings
+sentence = "I love learning Python"
+words = sentence.split()
+print("Words:", words)
+
+joined_sentence = " ".join(words)
+print("Joined back:", joined_sentence)
+
+# In this chapter, you learned:
+# - String basics, concatenation, formatting
+# - String methods: upper, lower, replace, title
+# - Splitting and joining strings
+
+
+# 🛠️ Mini Project: Word Counter App
+
+# This project asks the user to enter a sentence and tells them how many words they wrote.
+
+print("\n Welcome to the Word Counter App!")
+
+user_sentence = input("Enter a sentence: ")
+
+# Splitting the sentence into words
+words_list = user_sentence.split()
+
+# Counting words
+word_count = len(words_list)
+
+print(f"Your sentence has {word_count} words.")
+
+# Bonus: Showing each word separately
+print("\nHere are the words you entered:")
+for word in words_list:
+    print("-", word)
