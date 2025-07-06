@@ -56,19 +56,19 @@ print("\n--- Weather Advisory System ---")
 temperature = int(input("Enter the current temperature (°C): "))
 
 if temperature > 35:
-    print("🌡️  Extreme heat warning! Stay hydrated and avoid outdoor activities.")
+    print("Extreme heat warning! Stay hydrated and avoid outdoor activities.")
 elif temperature > 30:
-    print("☀️  It's very hot. Wear light clothing and drink plenty of water.")
+    print("It's very hot. Wear light clothing and drink plenty of water.")
 elif temperature > 25:
-    print("🌤️  It's warm and pleasant. Great day for outdoor activities!")
+    print("It's warm and pleasant. Great day for outdoor activities!")
 elif temperature > 20:
-    print("🌥️  It's mild. Perfect weather for a walk.")
+    print("🌥It's mild. Perfect weather for a walk.")
 elif temperature > 15:
-    print("🌦️  It's cool. Bring a light jacket.")
+    print("🌦It's cool. Bring a light jacket.")
 elif temperature > 10:
-    print("❄️  It's cold. Wear warm clothes.")
+    print("❄It's cold. Wear warm clothes.")
 else:
-    print("🥶  It's freezing! Bundle up and stay warm!")
+    print("It's freezing! Bundle up and stay warm!")
 
 # Grade Calculator Example
 # ------------------------
@@ -108,25 +108,25 @@ username = input("Enter username: ")
 password = input("Enter password: ")
 
 if username == "admin" and password == "1234":
-    print("✅ Login successful! Welcome, admin!")
+    print("Login successful! Welcome, admin!")
 else:
-    print("❌ Login failed. Incorrect username or password.")
+    print("Login failed. Incorrect username or password.")
 
 # OR operator - at least one condition must be True
 day = input("Enter day of week: ").lower()
 
 if day == "saturday" or day == "sunday":
-    print("🎉 It's the weekend! Time to relax!")
+    print("It's the weekend! Time to relax!")
 else:
-    print("💼 It's a weekday. Back to work!")
+    print("It's a weekday. Back to work!")
 
 # NOT operator - reverses the condition
 is_logged_in = False
 
 if not is_logged_in:
-    print("🔒 Please log in to access your account.")
+    print("Please log in to access your account.")
 else:
-    print("✅ You are already logged in.")
+    print("You are already logged in.")
 
 # Complex Conditions
 # ------------------
@@ -139,15 +139,15 @@ credit_score = int(input("Enter your credit score (300-850): "))
 
 # Complex condition with multiple checks
 if age >= 18 and income >= 3000 and credit_score >= 650:
-    print("✅ Loan approved! You meet all requirements.")
+    print("Loan approved! You meet all requirements.")
 elif age < 18:
-    print("❌ Loan denied: You must be 18 or older.")
+    print("Loan denied: You must be 18 or older.")
 elif income < 3000:
-    print("❌ Loan denied: Income too low. Minimum required: $3000")
+    print("Loan denied: Income too low. Minimum required: $3000")
 elif credit_score < 650:
-    print("❌ Loan denied: Credit score too low. Minimum required: 650")
+    print("Loan denied: Credit score too low. Minimum required: 650")
 else:
-    print("❌ Loan denied: Multiple requirements not met.")
+    print("Loan denied: Multiple requirements not met.")
 
 # Nested if Statements
 # --------------------
@@ -160,37 +160,37 @@ is_matinee = input("Is this a matinee show? (yes/no): ").lower() == "yes"
 
 if age < 3:
     price = 0
-    print("🎬 Free ticket for children under 3!")
+    print("Free ticket for children under 3!")
 elif age <= 12:
     if is_matinee:
         price = 5
-        print("🎬 Child matinee ticket: $5")
+        print("Child matinee ticket: $5")
     else:
         price = 8
-        print("🎬 Child regular ticket: $8")
+        print("Child regular ticket: $8")
 elif age <= 17:
     if is_student and is_matinee:
         price = 6
-        print("🎬 Student matinee ticket: $6")
+        print("Student matinee ticket: $6")
     elif is_student:
         price = 9
-        print("🎬 Student regular ticket: $9")
+        print("Student regular ticket: $9")
     else:
         price = 10
-        print("🎬 Teen regular ticket: $10")
+        print("Teen regular ticket: $10")
 else:  # Adult
     if is_student and is_matinee:
         price = 8
-        print("🎬 Student adult matinee ticket: $8")
+        print("Student adult matinee ticket: $8")
     elif is_student:
         price = 11
-        print("🎬 Student adult regular ticket: $11")
+        print("Student adult regular ticket: $11")
     elif is_matinee:
         price = 10
-        print("🎬 Adult matinee ticket: $10")
+        print("Adult matinee ticket: $10")
     else:
         price = 15
-        print("🎬 Adult regular ticket: $15")
+        print("Adult regular ticket: $15")
 
 print(f"Total price: ${price}")
 
@@ -206,51 +206,51 @@ print("Answer the following questions:")
 # Question 1
 answer1 = input("What is 2 + 2? ")
 if int(answer1) == 4:
-    print("✅ Correct!")
+    print("Correct!")
     score += 1
 else:
-    print("❌ Incorrect. 2 + 2 = 4")
+    print("Incorrect. 2 + 2 = 4")
 
 # Question 2
 answer2 = input("Is Python a programming language? (yes/no): ").lower()
 if answer2 in ["yes", "y"]:
-    print("✅ Correct!")
+    print("Correct!")
     score += 1
 else:
-    print("❌ Incorrect. Python is indeed a programming language.")
+    print("Incorrect. Python is indeed a programming language.")
 
 # Question 3
 answer3 = input("What is the capital of Pakistan? ").lower()
 if answer3 == "islamabad":
-    print("✅ Correct!")
+    print("Correct!")
     score += 1
 else:
-    print("❌ Incorrect. The capital is Islamabad.")
+    print("Incorrect. The capital is Islamabad.")
 
 # Question 4
 answer4 = input("Enter a number between 1 and 10: ")
 num = int(answer4)
 if 1 <= num <= 10:
-    print("✅ Valid number!")
+    print("Valid number!")
     score += 1
 else:
-    print("❌ Number must be between 1 and 10.")
+    print("Number must be between 1 and 10.")
 
 # Calculate percentage and give feedback
 percentage = (score / total_questions) * 100
 
-print(f"\n📊 Quiz Results: {score}/{total_questions} ({percentage:.1f}%)")
+print(f"\nQuiz Results: {score}/{total_questions} ({percentage:.1f}%)")
 
 if percentage >= 90:
-    print("🏆 Outstanding! Perfect score!")
+    print("Outstanding! Perfect score!")
 elif percentage >= 80:
-    print("🥇 Excellent! Great job!")
+    print("Excellent! Great job!")
 elif percentage >= 70:
-    print("🥈 Good work! Keep it up!")
+    print("Good work! Keep it up!")
 elif percentage >= 60:
-    print("🥉 Satisfactory. Room for improvement.")
+    print("Satisfactory. Room for improvement.")
 else:
-    print("📚 Needs more practice. Review the material!")
+    print("Needs more practice. Review the material!")
 
 # Best Practices
 # --------------
