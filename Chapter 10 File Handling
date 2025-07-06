@@ -1,77 +1,115 @@
-# Chapter 10: File Handling – Saving and Reading Data from Files
+# Chapter 10: Strings and Text - Essentials
 
-# File handling allows us to save information so that it can be used later, even after the program ends.
+# Strings are sequences of characters for storing and working with text.
 
-# Example 1: Writing to a file (this will create the file if it doesn't exist)
-with open("example.txt", "w") as file:
-    file.write("Hello, this is my first file!\n")
-    file.write("I am learning how to save data in Python.")
+# Creating strings
+s1 = 'Hello, Python!'
+s2 = "Welcome to programming"
+s3 = '''This is a multi-line string.'''
+print(s1)
+print(s2)
+print(s3)
 
-# The "w" mode means write. It will overwrite the file if it already exists.
+# String basics
+name = "Sohail"
+city = "Karachi"
+print("Name:", name)
+print("City:", city)
 
-# Example 2: Appending data to an existing file
-with open("example.txt", "a") as file:
-    file.write("\nThis line was added later.")
+# Concatenation and repetition
+full = name + " from " + city
+print("Full info:", full)
+print("Repeat:", name * 2)
 
-# The "a" mode means append—it adds new content without deleting old content.
+# Length and indexing
+text = "Python"
+print("Length:", len(text))
+print("First letter:", text[0])
+print("Last letter:", text[-1])
+print("Slice (1:4):", text[1:4])
+print("Every second letter:", text[::2])
+print("Reverse:", text[::-1])
 
-# Example 3: Reading data from a file
-with open("example.txt", "r") as file:
-    content = file.read()
-    print("\nFile Content:\n")
-    print(content)
+# Strings are immutable: you cannot change characters by assignment
+# For example, text[0] = 'J' would cause an error
 
-# Example 4: Reading file line by line
-with open("example.txt", "r") as file:
-    for line in file:
-        print(line.strip())
+# Common string methods
+msg = "  python programming  "
+print("Stripped:", msg.strip())
+print("Upper:", msg.upper())
+print("Lower:", msg.lower())
+print("Title:", msg.title())
+print("Replace:", msg.replace("python", "Java"))
 
-# In this chapter, you learned:
-# - How to write to a file
-# - How to append to a file
-# - How to read from a file
-# - Why it's important to use 'with' (it automatically closes the file)
+# Searching and checking
+sentence = "Python is a great programming language"
+print("Find 'Python':", sentence.find("Python"))
+print("Find 'Java':", sentence.find("Java"))
+print("'Python' in sentence:", "Python" in sentence)
+print("Count 'a':", sentence.count("a"))
+print("Starts with 'Python':", sentence.startswith("Python"))
+print("Ends with 'language':", sentence.endswith("language"))
 
+# Splitting and joining
+words = sentence.split()
+print("Words:", words)
+joined = "-".join(words)
+print("Joined with hyphens:", joined)
 
-# 🛠️ Mini Project: Save-and-Read Notes App
+# Formatting strings
+age = 25
+print(f"My name is {name} and I am {age} years old.")
+print("Name: {}, Age: {}".format(name, age))
+print("Name: %s, Age: %d" % (name, age))
 
-# This mini project lets the user add notes to a file and view saved notes.
+# Multi-line and escape characters
+multi = "Line1\nLine2\tTabbed"
+print(multi)
 
-def save_note(note):
-    with open("notes.txt", "a") as file:
-        file.write(note + "\n")
-    print(" Note saved!")
+# String validation methods
+samples = ["Hello123", "hello", "12345", "   ", "Hello World"]
+for s in samples:
+    print(f"'{s}': isalpha={s.isalpha()}, isdigit={s.isdigit()}, isalnum={s.isalnum()}, isspace={s.isspace()}")
 
-def read_notes():
-    try:
-        with open("notes.txt", "r") as file:
-            notes = file.readlines()
-            if notes:
-                print("\n📝 Your Saved Notes:")
-                for idx, line in enumerate(notes, start=1):
-                    print(f"{idx}. {line.strip()}")
-            else:
-                print("No notes found.")
-    except FileNotFoundError:
-        print("No notes file found yet.")
+# Slicing practice
+sample = "Data Science"
+print("First 4:", sample[:4])
+print("Last 3:", sample[-3:])
+print("Middle (2:8):", sample[2:8])
 
-print("\n Welcome to the Notes App!")
+# More string methods
+info = "python,java,c++"
+langs = info.split(",")
+print("Languages:", langs)
+print("Joined:", "/".join(langs))
 
-while True:
-    print("\nChoose an option:")
-    print("1. Add a note")
-    print("2. View notes")
-    print("3. Exit")
+# Removing whitespace and case-insensitive comparison
+raw = "  Hello PYTHON  "
+clean = raw.strip().lower()
+print("Cleaned:", clean)
+if clean == "hello python":
+    print("Case-insensitive match.")
 
-    choice = input("Enter choice (1-3): ")
+# Practical Example 1: Word Counter
+print("\nWord Counter App")
+user_input = input("Enter a sentence: ")
+word_list = user_input.split()
+print("Word count:", len(word_list))
+print("Words:")
+for word in word_list:
+    print(word)
 
-    if choice == "1":
-        note = input("Write your note: ")
-        save_note(note)
-    elif choice == "2":
-        read_notes()
-    elif choice == "3":
-        print("Goodbye!")
-        break
-    else:
-        print("Invalid choice.")
+# Practical Example 2: Simple Palindrome Checker
+print("\nPalindrome Checker")
+user_word = input("Enter a word: ")
+if user_word == user_word[::-1]:
+    print("This is a palindrome.")
+else:
+    print("This is not a palindrome.")
+
+# Summary of useful string methods
+# - len(s): length
+# - s.upper(), s.lower(), s.title(), s.strip()
+# - s.replace(old, new), s.find(sub), s.count(sub)
+# - s.split(), s.join(list), s.startswith(), s.endswith()
+# - s.isalpha(), s.isdigit(), s.isalnum(), s.isspace()
