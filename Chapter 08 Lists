@@ -1,104 +1,431 @@
-# Chapter 7: Lists – Handling Many Values at Once
+# Chapter 8: Lists – Collections of Data
+# ======================================
 
-# A list is a collection of items stored in a single variable.
-# Lists can store numbers, text, or even other lists.
+# What are Lists?
+# ---------------
+# Lists are ordered collections of items stored in a single variable.
+# Think of lists as containers that can hold multiple values of any type.
+# Lists are one of Python's most versatile and commonly used data structures.
 
-# Example 1: Creating and printing a list
-fruits = ["apple", "banana", "cherry", "mango"]
-print("Fruit list:", fruits)
+# Key Features of Lists:
+# - Ordered (items have a specific position)
+# - Mutable (can be changed after creation)
+# - Can contain different data types
+# - Indexed (access items by position)
+# - Dynamic (can grow or shrink)
 
-# Example 2: Accessing list items by index (starts from 0)
-print("First fruit:", fruits[0])
-print("Second fruit:", fruits[1])
+# Creating Lists
+# --------------
+print("--- Creating Lists ---")
 
-# Example 3: Changing an item in a list
-fruits[2] = "orange"
-print("Updated fruit list:", fruits)
+# Empty list
+empty_list = []
+print(f"Empty list: {empty_list}")
 
-# Example 4: Adding items to a list
-fruits.append("grape")
-print("After adding grape:", fruits)
+# List with items
+fruits = ["🍎 Apple", "🍌 Banana", "🍒 Cherry", "🥭 Mango"]
+numbers = [1, 2, 3, 4, 5]
+mixed_list = ["Hello", 42, 3.14, True, [1, 2, 3]]
 
-# Example 5: Removing items from a list
-fruits.remove("banana")
-print("After removing banana:", fruits)
+print(f"Fruits: {fruits}")
+print(f"Numbers: {numbers}")
+print(f"Mixed list: {mixed_list}")
 
-# Example 6: Looping through a list
-for fruit in fruits:
-    print("I like", fruit)
+# List with list() constructor
+letters = list("Python")
+print(f"Letters from 'Python': {letters}")
 
-# Example 7: Checking if an item exists in the list
-if "apple" in fruits:
-    print("Apple is in the list.")
+# Accessing List Items
+# --------------------
+print("\n--- Accessing List Items ---")
 
-# Example 8: Length of the list
-print("Number of fruits:", len(fruits))
+# Positive indexing (starts from 0)
+print(f"First fruit: {fruits[0]}")
+print(f"Second fruit: {fruits[1]}")
+print(f"Last fruit: {fruits[-1]}")  # Negative indexing
 
-# Example 9: Sorting a list
-numbers = [4, 2, 9, 1, 5]
-numbers.sort()
-print("Sorted numbers:", numbers)
+# Slicing (getting a portion of the list)
+print(f"First 2 fruits: {fruits[0:2]}")
+print(f"Last 2 fruits: {fruits[-2:]}")
+print(f"All fruits except first: {fruits[1:]}")
 
-# In this chapter, you learned:
-# - Creating lists
-# - Accessing, modifying, adding, and removing items
-# - Looping through lists
-# - Sorting and checking list length
+# Modifying Lists
+# ---------------
+print("\n--- Modifying Lists ---")
 
+# Changing items
+fruits[2] = "🍊 Orange"
+print(f"After changing item: {fruits}")
 
-# 🛠️ Mini Project: Favourite Movies Manager
+# Adding items
+fruits.append("🍇 Grape")  # Add to end
+print(f"After append: {fruits}")
 
-# This project lets users add, view, and remove favourite movies using a list.
+fruits.insert(1, "🍓 Strawberry")  # Insert at specific position
+print(f"After insert: {fruits}")
 
-movies = []
+# Removing items
+fruits.remove("🍌 Banana")  # Remove by value
+print(f"After remove: {fruits}")
 
-print("\n🎬 Welcome to Your Favourite Movies Manager!")
+popped_item = fruits.pop()  # Remove and return last item
+print(f"Popped item: {popped_item}")
+print(f"After pop: {fruits}")
 
-while True:
-    print("\nChoose an option:")
-    print("1. Add a movie")
-    print("2. View movies")
-    print("3. Remove a movie")
-    print("4. Exit")
+del fruits[0]  # Delete by index
+print(f"After del: {fruits}")
 
-    choice = input("Enter your choice (1-4): ")
+# List Methods
+# ------------
+print("\n--- List Methods ---")
 
-    if choice == "1":
-        movie = input("Enter the name of the movie: ").strip()
-        if movie:
-            movies.append(movie)
-            print(movie, "has been added to your list.")
-        else:
-            print("Please enter a valid movie name.")
+# Creating a new list for demonstrations
+numbers = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
+print(f"Original numbers: {numbers}")
 
-    elif choice == "2":
-        if movies:
-            print("\nYour Favourite Movies:")
-            for idx, m in enumerate(movies, start=1):
-                print(f"{idx}. {m}")
-        else:
-            print("Your movie list is empty.")
+# Sorting
+numbers.sort()  # Sort in place
+print(f"Sorted: {numbers}")
 
-    elif choice == "3":
-        if movies:
-            print("\nCurrent Movies:")
-            for idx, m in enumerate(movies, start=1):
-                print(f"{idx}. {m}")
-            try:
-                remove_index = int(input("Enter the movie number to remove: ")) - 1
-                if 0 <= remove_index < len(movies):
-                    removed = movies.pop(remove_index)
-                    print(removed, "has been removed.")
-                else:
-                    print("Invalid movie number.")
-            except ValueError:
-                print("Please enter a valid number.")
-        else:
-            print("No movies to remove.")
+numbers.sort(reverse=True)  # Sort in reverse
+print(f"Reverse sorted: {numbers}")
 
-    elif choice == "4":
-        print("Goodbye! ")
-        break
+# Copying lists
+numbers_copy = numbers.copy()  # Shallow copy
+print(f"Copy: {numbers_copy}")
 
+# Counting occurrences
+count_5 = numbers.count(5)
+print(f"Number of 5s: {count_5}")
+
+# Finding index
+index_9 = numbers.index(9)
+print(f"Index of 9: {index_9}")
+
+# Extending lists
+more_numbers = [7, 8, 9]
+numbers.extend(more_numbers)
+print(f"After extend: {numbers}")
+
+# Clearing list
+numbers.clear()
+print(f"After clear: {numbers}")
+
+# List Operations
+# ---------------
+print("\n--- List Operations ---")
+
+list1 = [1, 2, 3]
+list2 = [4, 5, 6]
+
+# Concatenation
+combined = list1 + list2
+print(f"Combined: {combined}")
+
+# Repetition
+repeated = list1 * 3
+print(f"Repeated: {repeated}")
+
+# Membership testing
+print(f"Is 2 in list1? {2 in list1}")
+print(f"Is 7 in list1? {7 in list1}")
+
+# Length
+print(f"Length of list1: {len(list1)}")
+
+# List Comprehension
+# ------------------
+print("\n--- List Comprehension ---")
+
+# Traditional way
+squares = []
+for i in range(1, 6):
+    squares.append(i ** 2)
+print(f"Squares (traditional): {squares}")
+
+# List comprehension way
+squares_comp = [i ** 2 for i in range(1, 6)]
+print(f"Squares (comprehension): {squares_comp}")
+
+# With condition
+even_squares = [i ** 2 for i in range(1, 11) if i % 2 == 0]
+print(f"Even squares: {even_squares}")
+
+# String manipulation
+words = ["hello", "world", "python"]
+upper_words = [word.upper() for word in words]
+print(f"Upper words: {upper_words}")
+
+# Nested Lists (2D Lists)
+# -----------------------
+print("\n--- Nested Lists ---")
+
+# Creating a 2D list (matrix)
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+print("Matrix:")
+for row in matrix:
+    print(f"  {row}")
+
+# Accessing elements
+print(f"Element at [1][1]: {matrix[1][1]}")
+
+# Creating a 3x3 identity matrix
+identity = [[1 if i == j else 0 for j in range(3)] for i in range(3)]
+print("Identity matrix:")
+for row in identity:
+    print(f"  {row}")
+
+# Practical Examples
+# ------------------
+
+# 1. Student Grade Manager
+print("\n--- Student Grade Manager ---")
+
+students = []
+grades = []
+
+def add_student(name, grade):
+    """Add a student and their grade"""
+    students.append(name)
+    grades.append(grade)
+    print(f"✅ Added {name} with grade {grade}")
+
+def display_students():
+    """Display all students and their grades"""
+    if not students:
+        print("📚 No students in the system.")
+        return
+    
+    print("\n📊 Student Grades:")
+    print("-" * 30)
+    for i, (name, grade) in enumerate(zip(students, grades), 1):
+        print(f"{i}. {name}: {grade}")
+
+def calculate_average():
+    """Calculate and display average grade"""
+    if grades:
+        average = sum(grades) / len(grades)
+        print(f"📈 Average grade: {average:.2f}")
+        return average
     else:
-        print("Invalid choice. Please try again.")
+        print("📚 No grades to calculate average.")
+        return 0
+
+def find_top_student():
+    """Find and display the student with highest grade"""
+    if not students:
+        print("📚 No students in the system.")
+        return
+    
+    max_grade = max(grades)
+    max_index = grades.index(max_grade)
+    top_student = students[max_index]
+    print(f"🏆 Top student: {top_student} with grade {max_grade}")
+
+# Test the grade manager
+add_student("Ali", 85)
+add_student("Sara", 92)
+add_student("Ahmed", 78)
+add_student("Fatima", 96)
+
+display_students()
+calculate_average()
+find_top_student()
+
+# 2. Shopping Cart System
+print("\n--- Shopping Cart System ---")
+
+cart_items = []
+cart_prices = []
+
+def add_item(name, price):
+    """Add item to shopping cart"""
+    cart_items.append(name)
+    cart_prices.append(price)
+    print(f"🛒 Added {name} for ${price:.2f}")
+
+def remove_item(name):
+    """Remove item from shopping cart"""
+    if name in cart_items:
+        index = cart_items.index(name)
+        removed_price = cart_prices.pop(index)
+        cart_items.pop(index)
+        print(f"❌ Removed {name} (${removed_price:.2f})")
+    else:
+        print(f"❌ {name} not found in cart")
+
+def display_cart():
+    """Display shopping cart contents"""
+    if not cart_items:
+        print("🛒 Your cart is empty.")
+        return
+    
+    print("\n🛒 Shopping Cart:")
+    print("-" * 30)
+    total = 0
+    for i, (item, price) in enumerate(zip(cart_items, cart_prices), 1):
+        print(f"{i}. {item}: ${price:.2f}")
+        total += price
+    
+    print("-" * 30)
+    print(f"💰 Total: ${total:.2f}")
+
+def apply_discount(percentage):
+    """Apply discount to all items"""
+    if not cart_prices:
+        print("🛒 No items to discount.")
+        return
+    
+    discount_multiplier = (100 - percentage) / 100
+    for i in range(len(cart_prices)):
+        cart_prices[i] *= discount_multiplier
+    
+    print(f"🎉 Applied {percentage}% discount!")
+
+# Test shopping cart
+add_item("Laptop", 999.99)
+add_item("Mouse", 25.50)
+add_item("Keyboard", 75.00)
+add_item("Headphones", 120.00)
+
+display_cart()
+apply_discount(10)
+display_cart()
+
+remove_item("Mouse")
+display_cart()
+
+# 3. To-Do List Manager
+print("\n--- To-Do List Manager ---")
+
+todos = []
+completed = []
+
+def add_todo(task):
+    """Add a new task to the to-do list"""
+    todos.append(task)
+    print(f"📝 Added: {task}")
+
+def complete_task(task_index):
+    """Mark a task as completed"""
+    if 0 <= task_index < len(todos):
+        completed_task = todos.pop(task_index)
+        completed.append(completed_task)
+        print(f"✅ Completed: {completed_task}")
+    else:
+        print("❌ Invalid task number")
+
+def display_todos():
+    """Display all to-do items"""
+    if not todos and not completed:
+        print("📝 No tasks in your to-do list.")
+        return
+    
+    if todos:
+        print("\n📋 Pending Tasks:")
+        for i, task in enumerate(todos, 1):
+            print(f"  {i}. {task}")
+    
+    if completed:
+        print("\n✅ Completed Tasks:")
+        for i, task in enumerate(completed, 1):
+            print(f"  {i}. {task}")
+
+def search_tasks(keyword):
+    """Search for tasks containing a keyword"""
+    matching_todos = [task for task in todos if keyword.lower() in task.lower()]
+    matching_completed = [task for task in completed if keyword.lower() in task.lower()]
+    
+    if matching_todos or matching_completed:
+        print(f"\n🔍 Search results for '{keyword}':")
+        if matching_todos:
+            print("  Pending:")
+            for task in matching_todos:
+                print(f"    - {task}")
+        if matching_completed:
+            print("  Completed:")
+            for task in matching_completed:
+                print(f"    - {task}")
+    else:
+        print(f"🔍 No tasks found containing '{keyword}'")
+
+# Test to-do list
+add_todo("Learn Python")
+add_todo("Build a project")
+add_todo("Read documentation")
+add_todo("Practice coding")
+
+display_todos()
+complete_task(0)
+display_todos()
+search_tasks("python")
+
+# 4. Data Analysis with Lists
+print("\n--- Data Analysis Example ---")
+
+# Simulating sales data
+sales_data = [
+    {"month": "Jan", "sales": 1200, "expenses": 800},
+    {"month": "Feb", "sales": 1500, "expenses": 900},
+    {"month": "Mar", "sales": 1800, "expenses": 1000},
+    {"month": "Apr", "sales": 1400, "expenses": 850},
+    {"month": "May", "sales": 2000, "expenses": 1100}
+]
+
+def analyze_sales():
+    """Analyze sales data"""
+    sales_values = [item["sales"] for item in sales_data]
+    expenses_values = [item["expenses"] for item in sales_data]
+    
+    total_sales = sum(sales_values)
+    total_expenses = sum(expenses_values)
+    profit = total_sales - total_expenses
+    
+    avg_sales = total_sales / len(sales_values)
+    max_sales = max(sales_values)
+    min_sales = min(sales_values)
+    
+    print("📊 Sales Analysis:")
+    print(f"💰 Total Sales: ${total_sales:,}")
+    print(f"💸 Total Expenses: ${total_expenses:,}")
+    print(f"💵 Total Profit: ${profit:,}")
+    print(f"📈 Average Sales: ${avg_sales:.0f}")
+    print(f"📊 Highest Sales: ${max_sales:,}")
+    print(f"📉 Lowest Sales: ${min_sales:,}")
+
+analyze_sales()
+
+# Best Practices
+# --------------
+# 1. Use descriptive variable names for lists
+# 2. Choose appropriate data types for list items
+# 3. Use list comprehensions for simple transformations
+# 4. Be careful with list copying (use .copy() or list())
+# 5. Consider using other data structures when appropriate
+# 6. Use enumerate() when you need both index and value
+
+# Common List Operations
+# ----------------------
+# - len(list) - get length
+# - list.append(item) - add to end
+# - list.insert(index, item) - insert at position
+# - list.remove(item) - remove by value
+# - list.pop(index) - remove and return item
+# - list.sort() - sort in place
+# - list.reverse() - reverse in place
+# - list.copy() - create a copy
+# - list.clear() - remove all items
+
+# Summary
+# -------
+# - Lists are ordered, mutable collections
+# - Use indexing to access items (starts at 0)
+# - Lists can contain any data type
+# - Use methods to modify lists
+# - List comprehensions provide concise syntax
+# - Lists are essential for data management
