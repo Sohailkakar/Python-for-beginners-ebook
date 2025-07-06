@@ -1,115 +1,167 @@
-# Chapter 10: Strings and Text - Essentials
+# Chapter 10: File Handling - Basics
 
-# Strings are sequences of characters for storing and working with text.
+# File handling allows programs to read from and write to files.
 
-# Creating strings
-s1 = 'Hello, Python!'
-s2 = "Welcome to programming"
-s3 = '''This is a multi-line string.'''
-print(s1)
-print(s2)
-print(s3)
+# File modes
+# "r" - read (default)
+# "w" - write (creates new, overwrites existing)
+# "a" - append (adds to existing)
 
-# String basics
-name = "Sohail"
-city = "Karachi"
-print("Name:", name)
-print("City:", city)
+# Writing to files
+with open("sample.txt", "w") as file:
+    file.write("Hello, this is my first file!\n")
+    file.write("I am learning file handling in Python.\n")
+    file.write("This is line three.")
 
-# Concatenation and repetition
-full = name + " from " + city
-print("Full info:", full)
-print("Repeat:", name * 2)
+print("File 'sample.txt' created.")
 
-# Length and indexing
-text = "Python"
-print("Length:", len(text))
-print("First letter:", text[0])
-print("Last letter:", text[-1])
-print("Slice (1:4):", text[1:4])
-print("Every second letter:", text[::2])
-print("Reverse:", text[::-1])
+# Appending to files
+with open("sample.txt", "a") as file:
+    file.write("\nThis line was added later.\n")
+    file.write("Append mode preserves existing content.")
 
-# Strings are immutable: you cannot change characters by assignment
-# For example, text[0] = 'J' would cause an error
+print("Content appended to 'sample.txt'.")
 
-# Common string methods
-msg = "  python programming  "
-print("Stripped:", msg.strip())
-print("Upper:", msg.upper())
-print("Lower:", msg.lower())
-print("Title:", msg.title())
-print("Replace:", msg.replace("python", "Java"))
+# Reading entire file
+with open("sample.txt", "r") as file:
+    content = file.read()
+    print("File content:")
+    print(content)
 
-# Searching and checking
-sentence = "Python is a great programming language"
-print("Find 'Python':", sentence.find("Python"))
-print("Find 'Java':", sentence.find("Java"))
-print("'Python' in sentence:", "Python" in sentence)
-print("Count 'a':", sentence.count("a"))
-print("Starts with 'Python':", sentence.startswith("Python"))
-print("Ends with 'language':", sentence.endswith("language"))
+# Reading line by line
+with open("sample.txt", "r") as file:
+    print("\nLine by line:")
+    for line_number, line in enumerate(file, 1):
+        print(f"Line {line_number}: {line.strip()}")
 
-# Splitting and joining
-words = sentence.split()
-print("Words:", words)
-joined = "-".join(words)
-print("Joined with hyphens:", joined)
+# Reading all lines into list
+with open("sample.txt", "r") as file:
+    lines = file.readlines()
+    print(f"\nTotal lines: {len(lines)}")
 
-# Formatting strings
-age = 25
-print(f"My name is {name} and I am {age} years old.")
-print("Name: {}, Age: {}".format(name, age))
-print("Name: %s, Age: %d" % (name, age))
+# Error handling
+def safe_read_file(filename):
+    try:
+        with open(filename, "r") as file:
+            return file.read()
+    except FileNotFoundError:
+        print(f"Error: File '{filename}' not found.")
+        return None
+    except Exception as e:
+        print(f"Error reading file: {e}")
+        return None
 
-# Multi-line and escape characters
-multi = "Line1\nLine2\tTabbed"
-print(multi)
+def safe_write_file(filename, content):
+    try:
+        with open(filename, "w") as file:
+            file.write(content)
+        print(f"Successfully wrote to '{filename}'")
+        return True
+    except Exception as e:
+        print(f"Error writing file: {e}")
+        return False
 
-# String validation methods
-samples = ["Hello123", "hello", "12345", "   ", "Hello World"]
-for s in samples:
-    print(f"'{s}': isalpha={s.isalpha()}, isdigit={s.isdigit()}, isalnum={s.isalnum()}, isspace={s.isspace()}")
+# Test error handling
+content = safe_read_file("nonexistent.txt")
+if content is None:
+    print("File reading failed as expected.")
 
-# Slicing practice
-sample = "Data Science"
-print("First 4:", sample[:4])
-print("Last 3:", sample[-3:])
-print("Middle (2:8):", sample[2:8])
+# Working with CSV files
+import csv
 
-# More string methods
-info = "python,java,c++"
-langs = info.split(",")
-print("Languages:", langs)
-print("Joined:", "/".join(langs))
+# Writing CSV
+students = [
+    ["Name", "Age", "Grade"],
+    ["Ali", "20", "A"],
+    ["Sara", "22", "B"],
+    ["Ahmed", "21", "A"]
+]
 
-# Removing whitespace and case-insensitive comparison
-raw = "  Hello PYTHON  "
-clean = raw.strip().lower()
-print("Cleaned:", clean)
-if clean == "hello python":
-    print("Case-insensitive match.")
+with open("students.csv", "w", newline="") as file:
+    writer = csv.writer(file)
+    writer.writerows(students)
 
-# Practical Example 1: Word Counter
-print("\nWord Counter App")
-user_input = input("Enter a sentence: ")
-word_list = user_input.split()
-print("Word count:", len(word_list))
-print("Words:")
-for word in word_list:
-    print(word)
+print("CSV file 'students.csv' created.")
 
-# Practical Example 2: Simple Palindrome Checker
-print("\nPalindrome Checker")
-user_word = input("Enter a word: ")
-if user_word == user_word[::-1]:
-    print("This is a palindrome.")
-else:
-    print("This is not a palindrome.")
+# Reading CSV
+with open("students.csv", "r") as file:
+    reader = csv.reader(file)
+    print("CSV content:")
+    for row in reader:
+        print(row)
 
-# Summary of useful string methods
-# - len(s): length
-# - s.upper(), s.lower(), s.title(), s.strip()
-# - s.replace(old, new), s.find(sub), s.count(sub)
-# - s.split(), s.join(list), s.startswith(), s.endswith()
-# - s.isalpha(), s.isdigit(), s.isalnum(), s.isspace()
+# Working with JSON files
+import json
+
+# Writing JSON
+person = {
+    "name": "Sohail",
+    "age": 25,
+    "city": "Karachi",
+    "skills": ["Python", "JavaScript"]
+}
+
+with open("person.json", "w") as file:
+    json.dump(person, file, indent=2)
+
+print("JSON file 'person.json' created.")
+
+# Reading JSON
+with open("person.json", "r") as file:
+    data = json.load(file)
+    print("JSON content:")
+    print(data)
+
+# File operations
+import os
+
+# Check if file exists
+if os.path.exists("sample.txt"):
+    size = os.path.getsize("sample.txt")
+    print(f"File size: {size} bytes")
+
+# Copy file content
+def copy_file(source, dest):
+    try:
+        with open(source, "r") as src:
+            content = src.read()
+        with open(dest, "w") as dst:
+            dst.write(content)
+        print(f"Copied '{source}' to '{dest}'")
+    except FileNotFoundError:
+        print(f"Source file '{source}' not found.")
+
+copy_file("sample.txt", "sample_copy.txt")
+
+# Practical Example: Simple Notes App
+print("\nSimple Notes App")
+
+def add_note(note):
+    with open("notes.txt", "a") as file:
+        file.write(note + "\n")
+    print("Note saved!")
+
+def read_notes():
+    try:
+        with open("notes.txt", "r") as file:
+            notes = file.readlines()
+            if notes:
+                print("Your notes:")
+                for i, note in enumerate(notes, 1):
+                    print(f"{i}. {note.strip()}")
+            else:
+                print("No notes found.")
+    except FileNotFoundError:
+        print("No notes file found.")
+
+# Test the notes app
+add_note("Learn Python file handling")
+add_note("Practice with CSV and JSON")
+read_notes()
+
+# Summary
+# - Use 'with' statements for automatic file closing
+# - Handle exceptions for file operations
+# - Different modes: 'r', 'w', 'a'
+# - CSV for tabular data, JSON for structured data
+# - Always close files or use context managers
