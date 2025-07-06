@@ -1,86 +1,136 @@
-# Chapter 11: Handling Errors Like a Pro
+# Chapter 12: Error Handling - Basics
 
-# Errors (also called exceptions) happen when something goes wrong in the program.
-# We use try-except blocks to handle these errors without crashing the program.
+# Errors (exceptions) occur when something goes wrong in your program.
+# We use try-except blocks to handle errors gracefully.
 
-# Example 1: Handling ValueError
+# Basic try-except structure
 try:
     age = int(input("Enter your age: "))
     print("Next year you'll be:", age + 1)
 except ValueError:
     print("Please enter a valid number.")
 
-# Example 2: Handling ZeroDivisionError
+# Handling multiple exceptions
 try:
-    num1 = int(input("Enter a number: "))
-    num2 = int(input("Enter another number: "))
+    num1 = int(input("Enter first number: "))
+    num2 = int(input("Enter second number: "))
     result = num1 / num2
     print("Result:", result)
-except ZeroDivisionError:
-    print("You can't divide by zero.")
 except ValueError:
-    print("Only numbers are allowed.")
+    print("Please enter valid numbers.")
+except ZeroDivisionError:
+    print("Cannot divide by zero.")
 
-# Example 3: Using finally
+# Using else clause (runs if no exception occurs)
 try:
-    file = open("somefile.txt", "r")
-    print(file.read())
+    number = int(input("Enter a number: "))
+except ValueError:
+    print("Invalid input.")
+else:
+    print("Valid number entered:", number)
+
+# Using finally clause (always runs)
+try:
+    file = open("test.txt", "r")
+    content = file.read()
+    print(content)
 except FileNotFoundError:
-    print(" File not found.")
+    print("File not found.")
 finally:
-    print("This message always appears.")
+    print("This always executes.")
 
-# In this chapter, you learned:
-# - How to use try, except, finally
-# - Handling common errors like ValueError, ZeroDivisionError, FileNotFoundError
+# Common exceptions
+# ValueError - invalid value for operation
+# ZeroDivisionError - division by zero
+# FileNotFoundError - file doesn't exist
+# IndexError - invalid list index
+# KeyError - invalid dictionary key
+# TypeError - wrong data type
 
+# Example: Handling list operations
+numbers = [1, 2, 3, 4, 5]
 
-#  Mini Project: Safe Calculator with Error Handling
+try:
+    index = int(input("Enter index (0-4): "))
+    print("Number at index:", numbers[index])
+except ValueError:
+    print("Please enter a valid number.")
+except IndexError:
+    print("Index out of range.")
 
-def safe_add(x, y):
-    return x + y
+# Example: Handling dictionary operations
+person = {"name": "Ali", "age": 25}
 
-def safe_subtract(x, y):
-    return x - y
+try:
+    key = input("Enter key (name/age/city): ")
+    print("Value:", person[key])
+except KeyError:
+    print("Key not found in dictionary.")
 
-def safe_multiply(x, y):
-    return x * y
+# Custom error messages
+try:
+    age = int(input("Enter age: "))
+    if age < 0:
+        raise ValueError("Age cannot be negative.")
+    print("Valid age:", age)
+except ValueError as e:
+    print("Error:", e)
 
-def safe_divide(x, y):
+# Practical Example: Safe Calculator
+print("\nSafe Calculator")
+
+def safe_calculate(operation, a, b):
     try:
-        return x / y
-    except ZeroDivisionError:
-        return "Cannot divide by zero!"
+        if operation == "add":
+            return a + b
+        elif operation == "subtract":
+            return a - b
+        elif operation == "multiply":
+            return a * b
+        elif operation == "divide":
+            if b == 0:
+                raise ZeroDivisionError("Cannot divide by zero.")
+            return a / b
+        else:
+            raise ValueError("Invalid operation.")
+    except (ValueError, ZeroDivisionError) as e:
+        return f"Error: {e}"
 
-print("\n Welcome to Safe Calculator!")
+# Test the calculator
+print("5 + 3 =", safe_calculate("add", 5, 3))
+print("10 / 0 =", safe_calculate("divide", 10, 0))
+print("Invalid operation =", safe_calculate("power", 2, 3))
 
+# Interactive calculator
+print("\nInteractive Calculator")
 while True:
-    print("\nChoose an operation:")
-    print("1. Add")
-    print("2. Subtract")
-    print("3. Multiply")
-    print("4. Divide")
-    print("5. Exit")
-
-    choice = input("Enter choice (1-5): ")
-
-    if choice == "5":
-        print("Goodbye!")
+    try:
+        num1 = float(input("Enter first number (or 'quit' to exit): "))
+        if input("Enter 'quit' to exit: ").lower() == 'quit':
+            break
+        
+        num2 = float(input("Enter second number: "))
+        operation = input("Enter operation (add/subtract/multiply/divide): ")
+        
+        result = safe_calculate(operation, num1, num2)
+        print("Result:", result)
+        
+    except ValueError:
+        print("Please enter valid numbers.")
+    except KeyboardInterrupt:
+        print("\nCalculator stopped.")
         break
 
-    try:
-        num1 = float(input("Enter first number: "))
-        num2 = float(input("Enter second number: "))
+# Best practices
+# - Always handle specific exceptions when possible
+# - Use meaningful error messages
+# - Don't catch all exceptions with bare except
+# - Use finally for cleanup operations
+# - Log errors for debugging
 
-        if choice == "1":
-            print("Result:", safe_add(num1, num2))
-        elif choice == "2":
-            print("Result:", safe_subtract(num1, num2))
-        elif choice == "3":
-            print("Result:", safe_multiply(num1, num2))
-        elif choice == "4":
-            print("Result:", safe_divide(num1, num2))
-        else:
-            print("Invalid choice.")
-    except ValueError:
-        print("Invalid number. Please try again.")
+# Summary
+# - Use try-except to handle errors gracefully
+# - Handle specific exceptions for better control
+# - Use else for code that runs when no exception occurs
+# - Use finally for cleanup code
+# - Raise exceptions with meaningful messages
