@@ -35,9 +35,9 @@ print("\n--- Countdown Timer ---")
 
 countdown = 5
 while countdown > 0:
-    print(f"🚀 {countdown}...")
+    print(f"{countdown}...")
     countdown -= 1
-print("🎉 Blast off!")
+print("Blast off!")
 
 # Password Attempt Example
 print("\n--- Password Attempt System ---")
@@ -49,14 +49,14 @@ max_attempts = 3
 while attempts < max_attempts:
     password = input(f"Enter password (attempt {attempts + 1}/{max_attempts}): ")
     if password == correct_password:
-        print("✅ Access granted!")
+        print("Access granted!")
         break
     else:
-        print("❌ Wrong password!")
+        print("Wrong password!")
         attempts += 1
 
 if attempts >= max_attempts:
-    print("🔒 Account locked. Too many failed attempts.")
+    print("Account locked. Too many failed attempts.")
 
 # For Loops
 # ---------
@@ -85,7 +85,7 @@ for letter in word:
 # Looping through lists
 print("\n--- Looping Through Lists ---")
 
-fruits = ["🍎 Apple", "🍌 Banana", "🍒 Cherry", "🍊 Orange"]
+fruits = ["Apple", "Banana", "Cherry", "Orange"]
 for fruit in fruits:
     print(f"I like {fruit}")
 
@@ -105,7 +105,7 @@ print("\n--- Break Statement ---")
 
 for num in range(1, 10):
     if num == 5:
-        print(f"🛑 Stopping at number {num}")
+        print(f"Stopping at number {num}")
         break  # Exit the loop
     print(f"Number: {num}")
 
@@ -113,7 +113,7 @@ print("\n--- Continue Statement ---")
 
 for num in range(1, 10):
     if num == 5:
-        print(f"⏭️  Skipping number {num}")
+        print(f"⏭Skipping number {num}")
         continue  # Skip this iteration
     print(f"Number: {num}")
 
@@ -142,7 +142,7 @@ secret_number = random.randint(1, 10)
 attempts = 0
 max_attempts = 5
 
-print("🎮 Welcome to the Number Guessing Game!")
+print("Welcome to the Number Guessing Game!")
 print(f"I'm thinking of a number between 1 and 10. You have {max_attempts} attempts.")
 
 while attempts < max_attempts:
@@ -151,18 +151,18 @@ while attempts < max_attempts:
         attempts += 1
         
         if guess < secret_number:
-            print("📈 Too low! Try a higher number.")
+            print("Too low! Try a higher number.")
         elif guess > secret_number:
-            print("📉 Too high! Try a lower number.")
+            print("Too high! Try a lower number.")
         else:
-            print(f"🎉 Congratulations! You guessed it in {attempts} attempts!")
+            print(f"Congratulations! You guessed it in {attempts} attempts!")
             break
     except ValueError:
-        print("❌ Please enter a valid number!")
+        print("Please enter a valid number!")
         attempts -= 1  # Don't count invalid input as an attempt
 
 if attempts >= max_attempts and guess != secret_number:
-    print(f"😔 Game over! The number was {secret_number}.")
+    print(f"Game over! The number was {secret_number}.")
 
 # 2. Shopping Cart Calculator
 print("\n--- Shopping Cart Calculator ---")
@@ -181,14 +181,14 @@ while True:
         price = float(input(f"Enter price for {item}: $"))
         cart_items.append((item, price))
         total += price
-        print(f"✅ Added {item} for ${price:.2f}")
+        print(f"Added {item} for ${price:.2f}")
     except ValueError:
-        print("❌ Please enter a valid price!")
+        print("Please enter a valid price!")
 
-print(f"\n📋 Your Cart:")
+print(f"\nYour Cart:")
 for item, price in cart_items:
     print(f"  {item}: ${price:.2f}")
-print(f"💰 Total: ${total:.2f}")
+print(f"Total: ${total:.2f}")
 
 # 3. Pattern Printing
 print("\n--- Pattern Printing ---")
@@ -211,7 +211,7 @@ print("\n--- Data Analysis Example ---")
 # Simulating test scores
 scores = [85, 92, 78, 96, 88, 75, 90, 87, 82, 95]
 
-print("📊 Test Score Analysis:")
+print("Test Score Analysis:")
 print(f"All scores: {scores}")
 
 # Calculate statistics
@@ -231,16 +231,16 @@ for score in scores:
 
 average = total_score / len(scores)
 
-print(f"📈 Highest score: {highest}")
-print(f"📉 Lowest score: {lowest}")
-print(f"📊 Average score: {average:.1f}")
-print(f"🏆 Scores above 90: {above_90}")
+print(f"Highest score: {highest}")
+print(f"Lowest score: {lowest}")
+print(f"Average score: {average:.1f}")
+print(f"Scores above 90: {above_90}")
 
 # 5. Menu-Driven Program
 print("\n--- Menu-Driven Calculator ---")
 
 while True:
-    print("\n🧮 Simple Calculator")
+    print("\nSimple Calculator")
     print("1. Add two numbers")
     print("2. Subtract two numbers")
     print("3. Multiply two numbers")
@@ -250,7 +250,7 @@ while True:
     choice = input("Enter your choice (1-5): ")
     
     if choice == '5':
-        print("👋 Goodbye!")
+        print("Goodbye!")
         break
     elif choice in ['1', '2', '3', '4']:
         try:
@@ -259,23 +259,23 @@ while True:
             
             if choice == '1':
                 result = num1 + num2
-                print(f"➕ {num1} + {num2} = {result}")
+                print(f"{num1} + {num2} = {result}")
             elif choice == '2':
                 result = num1 - num2
-                print(f"➖ {num1} - {num2} = {result}")
+                print(f"{num1} - {num2} = {result}")
             elif choice == '3':
                 result = num1 * num2
-                print(f"✖️  {num1} × {num2} = {result}")
+                print(f"{num1} × {num2} = {result}")
             elif choice == '4':
                 if num2 != 0:
                     result = num1 / num2
-                    print(f"➗ {num1} ÷ {num2} = {result}")
+                    print(f"{num1} ÷ {num2} = {result}")
                 else:
-                    print("❌ Cannot divide by zero!")
+                    print("Cannot divide by zero!")
         except ValueError:
-            print("❌ Please enter valid numbers!")
+            print("Please enter valid numbers!")
     else:
-        print("❌ Invalid choice! Please select 1-5.")
+        print("Invalid choice! Please select 1-5.")
 
 # Best Practices
 # --------------
