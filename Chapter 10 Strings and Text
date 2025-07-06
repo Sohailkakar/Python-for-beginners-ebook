@@ -1,65 +1,115 @@
-# Chapter 9: Strings and Text – Playing with Words in Python
+# Chapter 10: Strings and Text - Essentials
 
-# In Python, strings are pieces of text written inside quotes.
+# Strings are sequences of characters for storing and working with text.
 
-# Example 1: Basic string and printing
-message = "Hello, Python!"
-print(message)
+# Creating strings
+s1 = 'Hello, Python!'
+s2 = "Welcome to programming"
+s3 = '''This is a multi-line string.'''
+print(s1)
+print(s2)
+print(s3)
 
-# Example 2: String concatenation (joining)
-first_name = "Sohail"
-last_name = "Ahmed"
-full_name = first_name + " " + last_name
-print("Full Name:", full_name)
+# String basics
+name = "Sohail"
+city = "Karachi"
+print("Name:", name)
+print("City:", city)
 
-# Example 3: Using f-strings for cleaner formatting
-age = 25
-print(f"My name is {full_name} and I am {age} years old.")
+# Concatenation and repetition
+full = name + " from " + city
+print("Full info:", full)
+print("Repeat:", name * 2)
 
-# Example 4: String methods
-text = "python programming"
+# Length and indexing
+text = "Python"
+print("Length:", len(text))
+print("First letter:", text[0])
+print("Last letter:", text[-1])
+print("Slice (1:4):", text[1:4])
+print("Every second letter:", text[::2])
+print("Reverse:", text[::-1])
 
-print(text.upper())     # Converts to uppercase
-print(text.lower())     # Converts to lowercase
-print(text.title())     # Capitalises each word
-print(text.replace("python", "Java"))  # Replaces text
-print(len(text))        # Length of string
+# Strings are immutable: you cannot change characters by assignment
+# For example, text[0] = 'J' would cause an error
 
-# Example 5: Checking content in strings
-if "python" in text:
-    print("The word 'python' is present.")
+# Common string methods
+msg = "  python programming  "
+print("Stripped:", msg.strip())
+print("Upper:", msg.upper())
+print("Lower:", msg.lower())
+print("Title:", msg.title())
+print("Replace:", msg.replace("python", "Java"))
 
-# Example 6: Splitting and joining strings
-sentence = "I love learning Python"
+# Searching and checking
+sentence = "Python is a great programming language"
+print("Find 'Python':", sentence.find("Python"))
+print("Find 'Java':", sentence.find("Java"))
+print("'Python' in sentence:", "Python" in sentence)
+print("Count 'a':", sentence.count("a"))
+print("Starts with 'Python':", sentence.startswith("Python"))
+print("Ends with 'language':", sentence.endswith("language"))
+
+# Splitting and joining
 words = sentence.split()
 print("Words:", words)
+joined = "-".join(words)
+print("Joined with hyphens:", joined)
 
-joined_sentence = " ".join(words)
-print("Joined back:", joined_sentence)
+# Formatting strings
+age = 25
+print(f"My name is {name} and I am {age} years old.")
+print("Name: {}, Age: {}".format(name, age))
+print("Name: %s, Age: %d" % (name, age))
 
-# In this chapter, you learned:
-# - String basics, concatenation, formatting
-# - String methods: upper, lower, replace, title
-# - Splitting and joining strings
+# Multi-line and escape characters
+multi = "Line1\nLine2\tTabbed"
+print(multi)
 
+# String validation methods
+samples = ["Hello123", "hello", "12345", "   ", "Hello World"]
+for s in samples:
+    print(f"'{s}': isalpha={s.isalpha()}, isdigit={s.isdigit()}, isalnum={s.isalnum()}, isspace={s.isspace()}")
 
-# 🛠️ Mini Project: Word Counter App
+# Slicing practice
+sample = "Data Science"
+print("First 4:", sample[:4])
+print("Last 3:", sample[-3:])
+print("Middle (2:8):", sample[2:8])
 
-# This project asks the user to enter a sentence and tells them how many words they wrote.
+# More string methods
+info = "python,java,c++"
+langs = info.split(",")
+print("Languages:", langs)
+print("Joined:", "/".join(langs))
 
-print("\n Welcome to the Word Counter App!")
+# Removing whitespace and case-insensitive comparison
+raw = "  Hello PYTHON  "
+clean = raw.strip().lower()
+print("Cleaned:", clean)
+if clean == "hello python":
+    print("Case-insensitive match.")
 
-user_sentence = input("Enter a sentence: ")
+# Practical Example 1: Word Counter
+print("\nWord Counter App")
+user_input = input("Enter a sentence: ")
+word_list = user_input.split()
+print("Word count:", len(word_list))
+print("Words:")
+for word in word_list:
+    print(word)
 
-# Splitting the sentence into words
-words_list = user_sentence.split()
+# Practical Example 2: Simple Palindrome Checker
+print("\nPalindrome Checker")
+user_word = input("Enter a word: ")
+if user_word == user_word[::-1]:
+    print("This is a palindrome.")
+else:
+    print("This is not a palindrome.")
 
-# Counting words
-word_count = len(words_list)
-
-print(f"Your sentence has {word_count} words.")
-
-# Bonus: Showing each word separately
-print("\nHere are the words you entered:")
-for word in words_list:
-    print("-", word)
+# Summary of useful string methods
+# - len(s): length
+# - s.upper(), s.lower(), s.title(), s.strip()
+# - s.replace(old, new), s.find(sub), s.count(sub)
+# - s.split(), s.join(list), s.startswith(), s.endswith()
+# - s.isalpha(), s.isdigit(), s.isalnum(), s.isspace()
