@@ -1,40 +1,182 @@
-# Chapter 3: Taking Input from Users
+# Chapter 4: Taking Input from Users
+# ===================================
 
-# In Python, we can ask the user to enter something by using the 'input()' function.
+# What is User Input?
+# -------------------
+# User input allows your program to interact with users by asking them to provide data.
+# The `input()` function is Python's way of getting information from users.
 
-# Example: Asking the user's name
+# Basic Input Function
+# --------------------
+# The input() function displays a message and waits for the user to type something
+
+# Simple text input
 name = input("What is your name? ")
-print("Hello,", name)
+print(f"Hello, {name}! Nice to meet you!")
 
-# The input() function **always returns text (called a 'string')**.
+# Important: input() always returns a string
+# Even if the user types numbers, they are treated as text
 
-# Example: Asking the user's age (but still treated as text)
-age = input("How old are you? ")
-print("You are", age, "years old.")
+# Understanding Data Types from Input
+# -----------------------------------
+age_text = input("How old are you? ")
+print(f"You entered: '{age_text}' (type: {type(age_text)})")
 
-# If we want to do **math** with the user's input, we must **convert the input to a number**.
+# This will show that age_text is a string, not a number
+# To use it in calculations, we need to convert it
 
-# Example: Adding numbers after converting input
-num1 = input("Enter the first number: ")
-num2 = input("Enter the second number: ")
+# Converting Input to Numbers
+# ---------------------------
+# Use int() to convert to whole numbers
+age = int(input("Enter your age: "))
+print(f"Next year you will be {age + 1} years old")
 
-# Convert the input from string to integer using int()
-num1 = int(num1)
-num2 = int(num2)
+# Use float() to convert to decimal numbers
+height = float(input("Enter your height in meters: "))
+print(f"Your height is {height} meters")
 
-total = num1 + num2
-print("The total is:", total)
+# Mathematical Operations with User Input
+# ---------------------------------------
+print("\n--- Calculator Example ---")
 
-# Alternatively, you can convert to float if you expect decimal numbers:
-price = float(input("Enter the price of an item: "))
-quantity = int(input("Enter how many items: "))
-total_price = price * quantity
-print("Total price is:", total_price)
+# Getting two numbers from user
+num1 = int(input("Enter first number: "))
+num2 = int(input("Enter second number: "))
 
-# Another example: Creating a short introduction using multiple inputs
+# Performing calculations
+addition = num1 + num2
+subtraction = num1 - num2
+multiplication = num1 * num2
+division = num1 / num2
+
+# Displaying results
+print(f"\nResults:")
+print(f"{num1} + {num2} = {addition}")
+print(f"{num1} - {num2} = {subtraction}")
+print(f"{num1} × {num2} = {multiplication}")
+print(f"{num1} ÷ {num2} = {division}")
+
+# Shopping Calculator Example
+# ---------------------------
+print("\n--- Shopping Calculator ---")
+
+item_name = input("What item are you buying? ")
+price = float(input(f"Enter the price of {item_name}: $"))
+quantity = int(input(f"How many {item_name}s do you want? "))
+
+total_cost = price * quantity
+print(f"\nReceipt:")
+print(f"Item: {item_name}")
+print(f"Price per item: ${price}")
+print(f"Quantity: {quantity}")
+print(f"Total cost: ${total_cost:.2f}")
+
+# Personal Information Form
+# -------------------------
+print("\n--- Personal Information Form ---")
+
+# Collecting multiple pieces of information
 first_name = input("Enter your first name: ")
+last_name = input("Enter your last name: ")
 city = input("Enter your city: ")
+country = input("Enter your country: ")
+birth_year = int(input("Enter your birth year: "))
 
-print("Nice to meet you,", first_name + " from " + city + "!")
+# Calculate age
+current_year = 2025
+age = current_year - birth_year
 
-# That’s the basics of taking input, converting data types, and displaying results!
+# Display formatted information
+print(f"\nPersonal Information:")
+print(f"Name: {first_name} {last_name}")
+print(f"Location: {city}, {country}")
+print(f"Age: {age} years old")
+
+# Input Validation and Error Handling
+# -----------------------------------
+print("\n--- Input Validation Example ---")
+
+# Safe way to get numeric input with error handling
+def get_safe_number(prompt):
+    while True:
+        try:
+            return int(input(prompt))
+        except ValueError:
+            print("Please enter a valid number!")
+
+# Using the safe input function
+safe_number = get_safe_number("Enter a number (will keep asking until valid): ")
+print(f"You entered: {safe_number}")
+
+# Multiple Input in One Line
+# --------------------------
+print("\n--- Multiple Input Example ---")
+
+# You can get multiple values at once
+print("Enter three numbers separated by spaces:")
+user_input = input("Numbers: ")
+numbers = user_input.split()  # Split by spaces
+
+# Convert to integers
+num1, num2, num3 = int(numbers[0]), int(numbers[1]), int(numbers[2])
+print(f"You entered: {num1}, {num2}, {num3}")
+print(f"Sum: {num1 + num2 + num3}")
+
+# Interactive Quiz Example
+# ------------------------
+print("\n--- Interactive Quiz ---")
+
+score = 0
+total_questions = 3
+
+# Question 1
+answer1 = input("What is the capital of Pakistan? ").lower()
+if answer1 == "islamabad":
+    print("Correct!")
+    score += 1
+else:
+    print("Incorrect. The answer is Islamabad.")
+
+# Question 2
+answer2 = input("What is 5 + 7? ")
+if int(answer2) == 12:
+    print("Correct!")
+    score += 1
+else:
+    print("Incorrect. 5 + 7 = 12")
+
+# Question 3
+answer3 = input("Is Python a programming language? (yes/no): ").lower()
+if answer3 in ["yes", "y"]:
+    print("Correct!")
+    score += 1
+else:
+    print("Incorrect. Python is indeed a programming language.")
+
+# Display final score
+percentage = (score / total_questions) * 100
+print(f"\nQuiz Results: {score}/{total_questions} ({percentage:.1f}%)")
+
+# Best Practices
+# --------------
+# 1. Always provide clear prompts
+# 2. Convert input to appropriate data types
+# 3. Handle potential errors (invalid input)
+# 4. Use meaningful variable names
+# 5. Validate user input when necessary
+
+# Common Input Functions
+# ----------------------
+# input() - gets string input
+# int(input()) - gets integer input
+# float(input()) - gets decimal input
+# input().lower() - gets lowercase string
+# input().upper() - gets uppercase string
+
+# Summary
+# -------
+# - input() function gets user input as strings
+# - Convert strings to numbers using int() or float()
+# - Always provide clear prompts to users
+# - Handle errors when converting input
+# - Use input for interactive programs
