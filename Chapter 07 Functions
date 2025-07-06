@@ -26,7 +26,7 @@ print("--- Simple Function ---")
 
 def greet():
     """Prints a welcome message"""
-    print("👋 Hello, welcome to the world of functions!")
+    print("Hello, welcome to the world of functions!")
 
 # Calling the function
 greet()
@@ -38,7 +38,7 @@ print("\n--- Function with Parameters ---")
 
 def greet_user(name):
     """Greets a specific user by name"""
-    print(f"👋 Hello, {name}! Nice to meet you!")
+    print(f"Hello, {name}! Nice to meet you!")
 
 # Calling with different arguments
 greet_user("Sohail")
@@ -51,9 +51,9 @@ print("\n--- Function with Multiple Parameters ---")
 
 def introduce(name, age, city):
     """Introduces a person with their details"""
-    print(f"👤 Name: {name}")
-    print(f"🎂 Age: {age}")
-    print(f"🏙️  City: {city}")
+    print(f"Name: {name}")
+    print(f"Age: {age}")
+    print(f"City: {city}")
 
 introduce("Ali", 25, "Karachi")
 introduce("Sara", 30, "Lahore")
@@ -75,12 +75,12 @@ def multiply_numbers(x, y):
 sum_result = add_numbers(5, 10)
 product_result = multiply_numbers(4, 3)
 
-print(f"➕ Sum: {sum_result}")
-print(f"✖️  Product: {product_result}")
+print(f"Sum: {sum_result}")
+print(f"✖Product: {product_result}")
 
 # Using return values in calculations
 total = add_numbers(10, 20) + multiply_numbers(5, 2)
-print(f"📊 Total calculation: {total}")
+print(f"Total calculation: {total}")
 
 # Default Parameters
 # ------------------
@@ -108,7 +108,7 @@ def get_circle_info(radius):
 
 # Unpacking multiple return values
 area, circumference = get_circle_info(5)
-print(f"🔵 Circle with radius 5:")
+print(f"Circle with radius 5:")
 print(f"   Area: {area:.2f}")
 print(f"   Circumference: {circumference:.2f}")
 
@@ -130,7 +130,7 @@ def calculate_grade(score: float) -> str:
         return "F"
 
 grade = calculate_grade(85.5)
-print(f"📊 Score 85.5 = Grade {grade}")
+print(f"Score 85.5 = Grade {grade}")
 
 # Variable Scope
 # --------------
@@ -184,8 +184,8 @@ def fahrenheit_to_celsius(fahrenheit):
 c_temp = 25
 f_temp = 77
 
-print(f"🌡️  {c_temp}°C = {celsius_to_fahrenheit(c_temp):.1f}°F")
-print(f"🌡️  {f_temp}°F = {fahrenheit_to_celsius(f_temp):.1f}°C")
+print(f"{c_temp}°C = {celsius_to_fahrenheit(c_temp):.1f}°F")
+print(f"{f_temp}°F = {fahrenheit_to_celsius(f_temp):.1f}°C")
 
 # 2. String Manipulation Functions
 print("\n--- String Manipulation ---")
@@ -210,10 +210,10 @@ def is_palindrome(text):
 
 # Test string functions
 test_text = "Hello World"
-print(f"📝 Text: '{test_text}'")
-print(f"🔤 Vowels: {count_vowels(test_text)}")
-print(f"🔄 Reversed: '{reverse_string(test_text)}'")
-print(f"🔄 Palindrome check: '{test_text}' = {is_palindrome(test_text)}")
+print(f"Text: '{test_text}'")
+print(f"Vowels: {count_vowels(test_text)}")
+print(f"Reversed: '{reverse_string(test_text)}'")
+print(f"Palindrome check: '{test_text}' = {is_palindrome(test_text)}")
 
 # 3. List Processing Functions
 print("\n--- List Processing ---")
@@ -236,11 +236,11 @@ def filter_even_numbers(numbers):
 
 # Test list functions
 scores = [85, 92, 78, 96, 88, 75, 90]
-print(f"📊 Scores: {scores}")
+print(f"Scores: {scores}")
 max_score, min_score = find_max_min(scores)
-print(f"📈 Max: {max_score}, Min: {min_score}")
-print(f"📊 Average: {calculate_average(scores):.1f}")
-print(f"🔢 Even numbers: {filter_even_numbers(scores)}")
+print(f"Max: {max_score}, Min: {min_score}")
+print(f"Average: {calculate_average(scores):.1f}")
+print(f"Even numbers: {filter_even_numbers(scores)}")
 
 # 4. Advanced Calculator with Functions
 print("\n--- Advanced Calculator ---")
@@ -256,7 +256,7 @@ def multiply(a, b):
 
 def divide(a, b):
     if b == 0:
-        return "❌ Error: Cannot divide by zero!"
+        return "Error: Cannot divide by zero!"
     return a / b
 
 def power(a, b):
@@ -264,7 +264,7 @@ def power(a, b):
 
 def calculator():
     """Interactive calculator using functions"""
-    print("🧮 Welcome to the Advanced Calculator!")
+    print("Welcome to the Advanced Calculator!")
     
     while True:
         print("\nOperations:")
@@ -278,11 +278,11 @@ def calculator():
         choice = input("Enter choice (1-6): ")
         
         if choice == "6":
-            print("👋 Thank you for using the calculator!")
+            print("Thank you for using the calculator!")
             break
         
         if choice not in ["1", "2", "3", "4", "5"]:
-            print("❌ Invalid choice!")
+            print("Invalid choice!")
             continue
         
         try:
@@ -291,22 +291,22 @@ def calculator():
             
             if choice == "1":
                 result = add(num1, num2)
-                print(f"➕ {num1} + {num2} = {result}")
+                print(f"{num1} + {num2} = {result}")
             elif choice == "2":
                 result = subtract(num1, num2)
-                print(f"➖ {num1} - {num2} = {result}")
+                print(f"{num1} - {num2} = {result}")
             elif choice == "3":
                 result = multiply(num1, num2)
-                print(f"✖️  {num1} × {num2} = {result}")
+                print(f"{num1} × {num2} = {result}")
             elif choice == "4":
                 result = divide(num1, num2)
-                print(f"➗ {num1} ÷ {num2} = {result}")
+                print(f"{num1} ÷ {num2} = {result}")
             elif choice == "5":
                 result = power(num1, num2)
                 print(f"^ {num1} ^ {num2} = {result}")
                 
         except ValueError:
-            print("❌ Please enter valid numbers!")
+            print("Please enter valid numbers!")
 
 # Run the calculator
 calculator()
@@ -320,14 +320,14 @@ def calculate_total(*args):
 
 def create_profile(**kwargs):
     """Creates a user profile with any number of key-value pairs"""
-    profile = "👤 User Profile:\n"
+    profile = "User Profile:\n"
     for key, value in kwargs.items():
         profile += f"   {key.title()}: {value}\n"
     return profile
 
 # Test variable arguments
 total = calculate_total(10, 20, 30, 40, 50)
-print(f"📊 Total: {total}")
+print(f"Total: {total}")
 
 profile = create_profile(name="Ali", age=25, city="Karachi", occupation="Developer")
 print(profile)
