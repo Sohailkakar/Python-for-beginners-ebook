@@ -23,7 +23,7 @@ empty_list = []
 print(f"Empty list: {empty_list}")
 
 # List with items
-fruits = ["🍎 Apple", "🍌 Banana", "🍒 Cherry", "🥭 Mango"]
+fruits = ["Apple", "Banana", "Cherry", "Mango"]
 numbers = [1, 2, 3, 4, 5]
 mixed_list = ["Hello", 42, 3.14, True, [1, 2, 3]]
 
@@ -54,18 +54,18 @@ print(f"All fruits except first: {fruits[1:]}")
 print("\n--- Modifying Lists ---")
 
 # Changing items
-fruits[2] = "🍊 Orange"
+fruits[2] = "Orange"
 print(f"After changing item: {fruits}")
 
 # Adding items
-fruits.append("🍇 Grape")  # Add to end
+fruits.append("Grape")  # Add to end
 print(f"After append: {fruits}")
 
-fruits.insert(1, "🍓 Strawberry")  # Insert at specific position
+fruits.insert(1, "Strawberry")  # Insert at specific position
 print(f"After insert: {fruits}")
 
 # Removing items
-fruits.remove("🍌 Banana")  # Remove by value
+fruits.remove("Banana")  # Remove by value
 print(f"After remove: {fruits}")
 
 popped_item = fruits.pop()  # Remove and return last item
@@ -193,15 +193,15 @@ def add_student(name, grade):
     """Add a student and their grade"""
     students.append(name)
     grades.append(grade)
-    print(f"✅ Added {name} with grade {grade}")
+    print(f"Added {name} with grade {grade}")
 
 def display_students():
     """Display all students and their grades"""
     if not students:
-        print("📚 No students in the system.")
+        print("No students in the system.")
         return
     
-    print("\n📊 Student Grades:")
+    print("\nStudent Grades:")
     print("-" * 30)
     for i, (name, grade) in enumerate(zip(students, grades), 1):
         print(f"{i}. {name}: {grade}")
@@ -210,22 +210,22 @@ def calculate_average():
     """Calculate and display average grade"""
     if grades:
         average = sum(grades) / len(grades)
-        print(f"📈 Average grade: {average:.2f}")
+        print(f"Average grade: {average:.2f}")
         return average
     else:
-        print("📚 No grades to calculate average.")
+        print("No grades to calculate average.")
         return 0
 
 def find_top_student():
     """Find and display the student with highest grade"""
     if not students:
-        print("📚 No students in the system.")
+        print("No students in the system.")
         return
     
     max_grade = max(grades)
     max_index = grades.index(max_grade)
     top_student = students[max_index]
-    print(f"🏆 Top student: {top_student} with grade {max_grade}")
+    print(f"Top student: {top_student} with grade {max_grade}")
 
 # Test the grade manager
 add_student("Ali", 85)
@@ -255,9 +255,9 @@ def remove_item(name):
         index = cart_items.index(name)
         removed_price = cart_prices.pop(index)
         cart_items.pop(index)
-        print(f"❌ Removed {name} (${removed_price:.2f})")
+        print(f" Removed {name} (${removed_price:.2f})")
     else:
-        print(f"❌ {name} not found in cart")
+        print(f" {name} not found in cart")
 
 def display_cart():
     """Display shopping cart contents"""
@@ -273,19 +273,19 @@ def display_cart():
         total += price
     
     print("-" * 30)
-    print(f"💰 Total: ${total:.2f}")
+    print(f"Total: ${total:.2f}")
 
 def apply_discount(percentage):
     """Apply discount to all items"""
     if not cart_prices:
-        print("🛒 No items to discount.")
+        print(" No items to discount.")
         return
     
     discount_multiplier = (100 - percentage) / 100
     for i in range(len(cart_prices)):
         cart_prices[i] *= discount_multiplier
     
-    print(f"🎉 Applied {percentage}% discount!")
+    print(f" Applied {percentage}% discount!")
 
 # Test shopping cart
 add_item("Laptop", 999.99)
@@ -309,30 +309,30 @@ completed = []
 def add_todo(task):
     """Add a new task to the to-do list"""
     todos.append(task)
-    print(f"📝 Added: {task}")
+    print(f" Added: {task}")
 
 def complete_task(task_index):
     """Mark a task as completed"""
     if 0 <= task_index < len(todos):
         completed_task = todos.pop(task_index)
         completed.append(completed_task)
-        print(f"✅ Completed: {completed_task}")
+        print(f" Completed: {completed_task}")
     else:
-        print("❌ Invalid task number")
+        print(" Invalid task number")
 
 def display_todos():
     """Display all to-do items"""
     if not todos and not completed:
-        print("📝 No tasks in your to-do list.")
+        print(" No tasks in your to-do list.")
         return
     
     if todos:
-        print("\n📋 Pending Tasks:")
+        print("\nPending Tasks:")
         for i, task in enumerate(todos, 1):
             print(f"  {i}. {task}")
     
     if completed:
-        print("\n✅ Completed Tasks:")
+        print("\nCompleted Tasks:")
         for i, task in enumerate(completed, 1):
             print(f"  {i}. {task}")
 
@@ -342,7 +342,7 @@ def search_tasks(keyword):
     matching_completed = [task for task in completed if keyword.lower() in task.lower()]
     
     if matching_todos or matching_completed:
-        print(f"\n🔍 Search results for '{keyword}':")
+        print(f"\n Search results for '{keyword}':")
         if matching_todos:
             print("  Pending:")
             for task in matching_todos:
@@ -352,7 +352,7 @@ def search_tasks(keyword):
             for task in matching_completed:
                 print(f"    - {task}")
     else:
-        print(f"🔍 No tasks found containing '{keyword}'")
+        print(f" No tasks found containing '{keyword}'")
 
 # Test to-do list
 add_todo("Learn Python")
@@ -390,13 +390,13 @@ def analyze_sales():
     max_sales = max(sales_values)
     min_sales = min(sales_values)
     
-    print("📊 Sales Analysis:")
-    print(f"💰 Total Sales: ${total_sales:,}")
-    print(f"💸 Total Expenses: ${total_expenses:,}")
-    print(f"💵 Total Profit: ${profit:,}")
-    print(f"📈 Average Sales: ${avg_sales:.0f}")
-    print(f"📊 Highest Sales: ${max_sales:,}")
-    print(f"📉 Lowest Sales: ${min_sales:,}")
+    print("Sales Analysis:")
+    print(f" Total Sales: ${total_sales:,}")
+    print(f" Total Expenses: ${total_expenses:,}")
+    print(f" Total Profit: ${profit:,}")
+    print(f" Average Sales: ${avg_sales:.0f}")
+    print(f" Highest Sales: ${max_sales:,}")
+    print(f" Lowest Sales: ${min_sales:,}")
 
 analyze_sales()
 
