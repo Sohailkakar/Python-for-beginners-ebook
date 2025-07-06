@@ -1,16 +1,19 @@
-# Chapter 2: Variables and Data Types
+# Chapter 3: Variables and Data Types
+# =====================================
 
-# In Python, a variable is like a container where you can store information (data).
-# You can name the variable and assign it a value using the '=' symbol.
+# What are Variables?
+# -------------------
+# A variable is like a labeled container that stores data in your computer's memory.
+# Think of it as a box with a name tag where you can put different types of information.
 
-# Example: Storing your name in a variable
+# Basic Variable Assignment
+# -------------------------
+# Use the '=' symbol to assign values to variables
 name = "Sohail"
-
-# Printing the value of the variable
-print("My name is:", name)
-
-# You can also store numbers
 age = 25
+
+# Displaying variable values
+print("My name is:", name)
 print("I am", age, "years old.")
 
 # Variables can store different types of data:
@@ -19,43 +22,134 @@ print("I am", age, "years old.")
 # Float → decimal numbers
 # Boolean → True or False
 
-# Example of all basic data types:
-city = "Karachi"            # String
-year = 2025                 # Integer
-temperature = 36.5          # Float
-is_student = True           # Boolean
+# 1. String (str) - Text data enclosed in quotes
+city = "Karachi"
+country = 'Pakistan'  # Single or double quotes work
+print(f"City: {city}, Country: {country}")
 
-# Printing all variables
-print("City:", city)
-print("Year:", year)
-print("Temperature:", temperature)
-print("Are you a student?", is_student)
+# 2. Integer (int) - Whole numbers
+year = 2025
+population = 20000000
+print(f"Year: {year}, Population: {population}")
 
-# You can also update the value of a variable
-age = 26
-print("Next year I will be:", age)
+# 3. Float - Decimal numbers
+temperature = 36.5
+pi_value = 3.14159
+print(f"Temperature: {temperature}°C, Pi: {pi_value}")
 
-# Python is case-sensitive, so 'Age' and 'age' are different variables:
+# 4. Boolean (bool) - True or False values
+is_student = True
+is_working = False
+print(f"Are you a student? {is_student}")
+print(f"Are you working? {is_working}")
+
+# Variable Naming Rules
+# ---------------------
+# - Use descriptive names (avoid single letters like 'a', 'b')
+# - Use lowercase with underscores for multi-word names
+# - Cannot start with numbers
+# - Cannot use reserved keywords
+
+# Good variable names:
+user_name = "Ahmed"
+user_age = 30
+is_active_user = True
+
+# Python is Case-Sensitive
+# ------------------------
+# 'Age' and 'age' are completely different variables
 Age = 30
-print("Age with capital A:", Age)
-print("Age with small a:", age)
+age = 26
+print(f"Age (capital A): {Age}")
+print(f"age (lowercase): {age}")
 
-# Let's practise basic math with variables:
+# Mathematical Operations with Variables
+# -------------------------------------
+# Variables make math operations more readable and reusable
+
+# Basic arithmetic
 num1 = 10
 num2 = 5
+
+# Addition
 total = num1 + num2
-print("Total is:", total)
+print(f"{num1} + {num2} = {total}")
 
+# Subtraction
 difference = num1 - num2
-print("Difference is:", difference)
+print(f"{num1} - {num2} = {difference}")
 
+# Multiplication
 product = num1 * num2
-print("Product is:", product)
+print(f"{num1} × {num2} = {product}")
 
+# Division (always returns float)
 quotient = num1 / num2
-print("Quotient is:", quotient)
+print(f"{num1} ÷ {num2} = {quotient}")
 
-# Remember:
-# Use meaningful variable names so your code is easy to understand.
+# Integer division (returns integer)
+integer_quotient = num1 // num2
+print(f"{num1} // {num2} = {integer_quotient}")
 
-# That's the basics of variables and data types!
+# Modulus (remainder)
+remainder = num1 % num2
+print(f"{num1} % {num2} = {remainder}")
+
+# Power
+power = num1 ** 2
+print(f"{num1}² = {power}")
+
+# Updating Variables
+# ------------------
+# You can change a variable's value anytime
+print(f"\nOriginal age: {age}")
+age = 27  # Updating the variable
+print(f"Updated age: {age}")
+
+# Multiple Assignment
+# -------------------
+# You can assign multiple variables at once
+x, y, z = 1, 2, 3
+print(f"x = {x}, y = {y}, z = {z}")
+
+# Same value to multiple variables
+a = b = c = 100
+print(f"a = {a}, b = {b}, c = {c}")
+
+# Type Checking
+# -------------
+# Use type() function to check data type
+print(f"\nData type examples:")
+print(f"name ({name}) is type: {type(name)}")
+print(f"age ({age}) is type: {type(age)}")
+print(f"temperature ({temperature}) is type: {type(temperature)}")
+print(f"is_student ({is_student}) is type: {type(is_student)}")
+
+# Best Practices
+# --------------
+# 1. Use meaningful variable names
+# 2. Keep names descriptive but concise
+# 3. Use lowercase with underscores for multi-word names
+# 4. Avoid reserved keywords
+# 5. Be consistent with naming conventions
+
+# Example of good vs bad naming:
+# Good:
+user_first_name = "Ali"
+user_last_name = "Khan"
+is_verified = True
+
+# Bad:
+fn = "Ali"
+ln = "Khan"
+v = True
+
+print(f"\nGood naming example: {user_first_name} {user_last_name}, Verified: {is_verified}")
+
+# Summary
+# -------
+# Variables are containers for storing data
+# Python has multiple data types: str, int, float, bool
+# Use meaningful names and follow naming conventions
+# Variables can be updated and used in calculations
+# Python is case-sensitive
