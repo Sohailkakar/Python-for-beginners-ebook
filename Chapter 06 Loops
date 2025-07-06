@@ -1,68 +1,303 @@
-# Chapter 5: Loops – Doing Things Again and Again
+# Chapter 6: Loops – Repeating Actions Efficiently
+# ================================================
 
-# Loops allow us to repeat actions multiple times without writing the same code over and over.
+# What are Loops?
+# ---------------
+# Loops allow you to repeat code multiple times without writing it over and over.
+# Think of loops as a way to automate repetitive tasks - like a robot that does
+# the same thing many times until you tell it to stop!
 
-# Example 1: Using a while loop
+# Types of Loops in Python:
+# 1. while loops - repeat while a condition is True
+# 2. for loops - repeat for each item in a sequence
+
+# While Loops
+# -----------
+# A while loop continues as long as a condition remains True
+
+print("--- Basic While Loop ---")
+
 count = 1
 while count <= 5:
-    print("Count is:", count)
-    count += 1
+    print(f"Count is: {count}")
+    count += 1  # Increment count by 1
 
-# The loop runs as long as the condition (count <= 5) is True.
+print("Loop finished!")
 
-# Example 2: Using a for loop with range()
-for i in range(1, 6):
-    print("Number:", i)
+# Understanding While Loop Structure
+# ----------------------------------
+# while condition:
+#     code to repeat
+#     update condition (to avoid infinite loop)
 
-# The range(1, 6) generates numbers from 1 to 5.
+# Countdown Example
+print("\n--- Countdown Timer ---")
 
-# Example 3: Looping through a string
-for letter in "Python":
-    print(letter)
+countdown = 5
+while countdown > 0:
+    print(f"🚀 {countdown}...")
+    countdown -= 1
+print("🎉 Blast off!")
 
-# Example 4: Looping through a list
-fruits = ["apple", "banana", "cherry"]
-for fruit in fruits:
-    print("I like", fruit)
+# Password Attempt Example
+print("\n--- Password Attempt System ---")
 
-# Example 5: Using break and continue
-for num in range(1, 10):
-    if num == 5:
-        print("Stopping at number", num)
-        break  # Exits the loop
-    print(num)
+correct_password = "python123"
+attempts = 0
+max_attempts = 3
 
-for num in range(1, 10):
-    if num == 5:
-        continue  # Skips the rest of this loop
-    print(num)
-
-# In this chapter, you learned:
-# - while loops
-# - for loops
-# - range()
-# - break and continue
-
-
-
-# Mini Project: Guess the Number
-
-# In this game, the player has to guess the secret number.
-# The loop keeps asking until the correct number is guessed.
-
-secret_number = 7
-guess = None
-
-print("Welcome to the Guess the Number Game!")
-
-while guess != secret_number:
-    guess = int(input("Guess a number between 1 and 10: "))
-
-    if guess < secret_number:
-        print("Too low. Try again!")
-    elif guess > secret_number:
-        print("Too high. Try again!")
+while attempts < max_attempts:
+    password = input(f"Enter password (attempt {attempts + 1}/{max_attempts}): ")
+    if password == correct_password:
+        print("✅ Access granted!")
+        break
     else:
-        print("Congratulations! You guessed it right!")
+        print("❌ Wrong password!")
+        attempts += 1
 
-print("Thanks for playing!")
+if attempts >= max_attempts:
+    print("🔒 Account locked. Too many failed attempts.")
+
+# For Loops
+# ---------
+# For loops iterate over sequences (lists, strings, ranges, etc.)
+
+print("\n--- Basic For Loop with Range ---")
+
+# range(start, stop, step) - generates numbers from start to stop-1
+for i in range(1, 6):
+    print(f"Number: {i}")
+
+# Different range examples
+print("\n--- Range Examples ---")
+
+print("Range(5):", list(range(5)))  # 0, 1, 2, 3, 4
+print("Range(1, 6):", list(range(1, 6)))  # 1, 2, 3, 4, 5
+print("Range(0, 10, 2):", list(range(0, 10, 2)))  # 0, 2, 4, 6, 8
+
+# Looping through strings
+print("\n--- Looping Through Strings ---")
+
+word = "Python"
+for letter in word:
+    print(f"Letter: {letter}")
+
+# Looping through lists
+print("\n--- Looping Through Lists ---")
+
+fruits = ["🍎 Apple", "🍌 Banana", "🍒 Cherry", "🍊 Orange"]
+for fruit in fruits:
+    print(f"I like {fruit}")
+
+# Looping with index
+print("\n--- Looping with Index ---")
+
+colors = ["Red", "Green", "Blue", "Yellow"]
+for index, color in enumerate(colors):
+    print(f"Color {index + 1}: {color}")
+
+# Loop Control Statements
+# -----------------------
+# break - exits the loop completely
+# continue - skips the current iteration and continues
+
+print("\n--- Break Statement ---")
+
+for num in range(1, 10):
+    if num == 5:
+        print(f"🛑 Stopping at number {num}")
+        break  # Exit the loop
+    print(f"Number: {num}")
+
+print("\n--- Continue Statement ---")
+
+for num in range(1, 10):
+    if num == 5:
+        print(f"⏭️  Skipping number {num}")
+        continue  # Skip this iteration
+    print(f"Number: {num}")
+
+# Nested Loops
+# ------------
+# Loops inside loops
+
+print("\n--- Nested Loops Example ---")
+
+# Multiplication table
+for i in range(1, 4):
+    for j in range(1, 4):
+        result = i * j
+        print(f"{i} × {j} = {result}")
+    print("---")  # Separator between tables
+
+# Practical Examples
+# ------------------
+
+# 1. Number Guessing Game
+print("\n--- Number Guessing Game ---")
+
+import random
+
+secret_number = random.randint(1, 10)
+attempts = 0
+max_attempts = 5
+
+print("🎮 Welcome to the Number Guessing Game!")
+print(f"I'm thinking of a number between 1 and 10. You have {max_attempts} attempts.")
+
+while attempts < max_attempts:
+    try:
+        guess = int(input(f"Enter your guess (attempt {attempts + 1}/{max_attempts}): "))
+        attempts += 1
+        
+        if guess < secret_number:
+            print("📈 Too low! Try a higher number.")
+        elif guess > secret_number:
+            print("📉 Too high! Try a lower number.")
+        else:
+            print(f"🎉 Congratulations! You guessed it in {attempts} attempts!")
+            break
+    except ValueError:
+        print("❌ Please enter a valid number!")
+        attempts -= 1  # Don't count invalid input as an attempt
+
+if attempts >= max_attempts and guess != secret_number:
+    print(f"😔 Game over! The number was {secret_number}.")
+
+# 2. Shopping Cart Calculator
+print("\n--- Shopping Cart Calculator ---")
+
+cart_items = []
+total = 0
+
+print("🛒 Add items to your cart (type 'done' when finished):")
+
+while True:
+    item = input("Enter item name: ").strip()
+    if item.lower() == 'done':
+        break
+    
+    try:
+        price = float(input(f"Enter price for {item}: $"))
+        cart_items.append((item, price))
+        total += price
+        print(f"✅ Added {item} for ${price:.2f}")
+    except ValueError:
+        print("❌ Please enter a valid price!")
+
+print(f"\n📋 Your Cart:")
+for item, price in cart_items:
+    print(f"  {item}: ${price:.2f}")
+print(f"💰 Total: ${total:.2f}")
+
+# 3. Pattern Printing
+print("\n--- Pattern Printing ---")
+
+# Triangle pattern
+for i in range(1, 6):
+    print("*" * i)
+
+print()  # Empty line
+
+# Number pyramid
+for i in range(1, 6):
+    spaces = " " * (5 - i)
+    numbers = " ".join(str(j) for j in range(1, i + 1))
+    print(f"{spaces}{numbers}")
+
+# 4. Data Analysis Example
+print("\n--- Data Analysis Example ---")
+
+# Simulating test scores
+scores = [85, 92, 78, 96, 88, 75, 90, 87, 82, 95]
+
+print("📊 Test Score Analysis:")
+print(f"All scores: {scores}")
+
+# Calculate statistics
+total_score = 0
+highest = scores[0]
+lowest = scores[0]
+above_90 = 0
+
+for score in scores:
+    total_score += score
+    if score > highest:
+        highest = score
+    if score < lowest:
+        lowest = score
+    if score >= 90:
+        above_90 += 1
+
+average = total_score / len(scores)
+
+print(f"📈 Highest score: {highest}")
+print(f"📉 Lowest score: {lowest}")
+print(f"📊 Average score: {average:.1f}")
+print(f"🏆 Scores above 90: {above_90}")
+
+# 5. Menu-Driven Program
+print("\n--- Menu-Driven Calculator ---")
+
+while True:
+    print("\n🧮 Simple Calculator")
+    print("1. Add two numbers")
+    print("2. Subtract two numbers")
+    print("3. Multiply two numbers")
+    print("4. Divide two numbers")
+    print("5. Exit")
+    
+    choice = input("Enter your choice (1-5): ")
+    
+    if choice == '5':
+        print("👋 Goodbye!")
+        break
+    elif choice in ['1', '2', '3', '4']:
+        try:
+            num1 = float(input("Enter first number: "))
+            num2 = float(input("Enter second number: "))
+            
+            if choice == '1':
+                result = num1 + num2
+                print(f"➕ {num1} + {num2} = {result}")
+            elif choice == '2':
+                result = num1 - num2
+                print(f"➖ {num1} - {num2} = {result}")
+            elif choice == '3':
+                result = num1 * num2
+                print(f"✖️  {num1} × {num2} = {result}")
+            elif choice == '4':
+                if num2 != 0:
+                    result = num1 / num2
+                    print(f"➗ {num1} ÷ {num2} = {result}")
+                else:
+                    print("❌ Cannot divide by zero!")
+        except ValueError:
+            print("❌ Please enter valid numbers!")
+    else:
+        print("❌ Invalid choice! Please select 1-5.")
+
+# Best Practices
+# --------------
+# 1. Always ensure your loop has a way to terminate
+# 2. Use meaningful variable names in loops
+# 3. Avoid infinite loops by updating loop variables
+# 4. Use break and continue appropriately
+# 5. Consider using enumerate() when you need both index and value
+# 6. Use try-except for input validation in loops
+
+# Common Loop Patterns
+# --------------------
+# - Counter loops: for i in range(n)
+# - Iterator loops: for item in sequence
+# - Conditional loops: while condition
+# - Infinite loops: while True (with break)
+
+# Summary
+# -------
+# - while loops repeat while a condition is True
+# - for loops iterate over sequences
+# - range() generates number sequences
+# - break exits loops, continue skips iterations
+# - Nested loops can create complex patterns
+# - Loops are essential for automation and repetition
