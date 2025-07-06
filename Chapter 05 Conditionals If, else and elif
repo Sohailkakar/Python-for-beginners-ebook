@@ -1,58 +1,278 @@
-# Chapter 4: Making Decisions with if Statements
+# Chapter 5: Making Decisions with Conditional Statements
+# =======================================================
 
-# In Python, 'if' statements help us make decisions based on conditions.
+# What are Conditional Statements?
+# --------------------------------
+# Conditional statements allow your program to make decisions and execute different
+# code based on whether certain conditions are True or False.
+# Think of them as the "brain" of your program - they help it think and choose!
 
-# Example 1: Simple if statement
+# Basic if Statement
+# ------------------
+# The simplest form of decision-making
+
 age = int(input("Enter your age: "))
 
 if age >= 18:
     print("You are an adult.")
+    print("You can vote and drive!")
 else:
     print("You are under 18.")
+    print("You need parental consent for many activities.")
 
-# The 'if' block runs if the condition is True.
-# The 'else' block runs if the condition is False.
+# Understanding the Structure
+# ---------------------------
+# if condition:
+#     code to run if condition is True
+# else:
+#     code to run if condition is False
 
-# Example 2: Using elif for multiple choices
-temperature = int(input("Enter the current temperature: "))
+# Comparison Operators
+# --------------------
+# == (equal to), != (not equal to)
+# > (greater than), < (less than)
+# >= (greater than or equal to), <= (less than or equal to)
 
-if temperature > 30:
-    print("It's a hot day.")
+print("\n--- Comparison Examples ---")
+
+num1 = 10
+num2 = 5
+
+if num1 == num2:
+    print(f"{num1} equals {num2}")
+elif num1 > num2:
+    print(f"{num1} is greater than {num2}")
+elif num1 < num2:
+    print(f"{num1} is less than {num2}")
+else:
+    print("This should never happen!")
+
+# Multiple Conditions with elif
+# -----------------------------
+# Use elif (else if) when you have multiple conditions to check
+
+print("\n--- Weather Advisory System ---")
+
+temperature = int(input("Enter the current temperature (°C): "))
+
+if temperature > 35:
+    print("🌡️  Extreme heat warning! Stay hydrated and avoid outdoor activities.")
+elif temperature > 30:
+    print("☀️  It's very hot. Wear light clothing and drink plenty of water.")
+elif temperature > 25:
+    print("🌤️  It's warm and pleasant. Great day for outdoor activities!")
 elif temperature > 20:
-    print("It's a nice day.")
+    print("🌥️  It's mild. Perfect weather for a walk.")
+elif temperature > 15:
+    print("🌦️  It's cool. Bring a light jacket.")
 elif temperature > 10:
-    print("It's a bit cold.")
+    print("❄️  It's cold. Wear warm clothes.")
 else:
-    print("It's very cold!")
+    print("🥶  It's freezing! Bundle up and stay warm!")
 
-# Example 3: Checking user input with if statements
-answer = input("Do you like Python? (yes/no): ")
+# Grade Calculator Example
+# ------------------------
+print("\n--- Grade Calculator ---")
 
-if answer.lower() == "yes":
-    print("That's awesome!")
-elif answer.lower() == "no":
-    print("Give it some time, you might enjoy it!")
+score = int(input("Enter your test score (0-100): "))
+
+if score >= 90:
+    grade = "A"
+    message = "Excellent! Outstanding performance!"
+elif score >= 80:
+    grade = "B"
+    message = "Good job! Well done!"
+elif score >= 70:
+    grade = "C"
+    message = "Satisfactory. Keep working hard!"
+elif score >= 60:
+    grade = "D"
+    message = "Needs improvement. Study more!"
 else:
-    print("I didn't understand your answer.")
+    grade = "F"
+    message = "Failed. Please retake the test."
 
-# Example 4: Using logical operators (and, or)
-user = input("Enter username: ")
+print(f"Grade: {grade}")
+print(f"Feedback: {message}")
+
+# Logical Operators
+# -----------------
+# and: Both conditions must be True
+# or: At least one condition must be True
+# not: Reverses the condition (True becomes False, False becomes True)
+
+print("\n--- Logical Operators Examples ---")
+
+# AND operator - both conditions must be True
+username = input("Enter username: ")
 password = input("Enter password: ")
 
-if user == "admin" and password == "1234":
-    print("Login successful!")
+if username == "admin" and password == "1234":
+    print("✅ Login successful! Welcome, admin!")
 else:
-    print("Incorrect username or password.")
+    print("❌ Login failed. Incorrect username or password.")
 
-# Example 5: Using 'not' operator
-logged_in = False
+# OR operator - at least one condition must be True
+day = input("Enter day of week: ").lower()
 
-if not logged_in:
-    print("Please log in to continue.")
+if day == "saturday" or day == "sunday":
+    print("🎉 It's the weekend! Time to relax!")
+else:
+    print("💼 It's a weekday. Back to work!")
 
-# In this chapter, we learned:
-# - How to write 'if', 'elif', and 'else' blocks
-# - How to use comparison operators (==, >, <, >=, <=)
-# - How to use logical operators (and, or, not)
+# NOT operator - reverses the condition
+is_logged_in = False
 
-# These decision-making skills are the foundation for creating interactive programs.
+if not is_logged_in:
+    print("🔒 Please log in to access your account.")
+else:
+    print("✅ You are already logged in.")
+
+# Complex Conditions
+# ------------------
+print("\n--- Complex Decision Making ---")
+
+# Age and income check for loan approval
+age = int(input("Enter your age: "))
+income = int(input("Enter your monthly income ($): "))
+credit_score = int(input("Enter your credit score (300-850): "))
+
+# Complex condition with multiple checks
+if age >= 18 and income >= 3000 and credit_score >= 650:
+    print("✅ Loan approved! You meet all requirements.")
+elif age < 18:
+    print("❌ Loan denied: You must be 18 or older.")
+elif income < 3000:
+    print("❌ Loan denied: Income too low. Minimum required: $3000")
+elif credit_score < 650:
+    print("❌ Loan denied: Credit score too low. Minimum required: 650")
+else:
+    print("❌ Loan denied: Multiple requirements not met.")
+
+# Nested if Statements
+# --------------------
+print("\n--- Nested Conditions Example ---")
+
+# Movie ticket pricing system
+age = int(input("Enter your age: "))
+is_student = input("Are you a student? (yes/no): ").lower() == "yes"
+is_matinee = input("Is this a matinee show? (yes/no): ").lower() == "yes"
+
+if age < 3:
+    price = 0
+    print("🎬 Free ticket for children under 3!")
+elif age <= 12:
+    if is_matinee:
+        price = 5
+        print("🎬 Child matinee ticket: $5")
+    else:
+        price = 8
+        print("🎬 Child regular ticket: $8")
+elif age <= 17:
+    if is_student and is_matinee:
+        price = 6
+        print("🎬 Student matinee ticket: $6")
+    elif is_student:
+        price = 9
+        print("🎬 Student regular ticket: $9")
+    else:
+        price = 10
+        print("🎬 Teen regular ticket: $10")
+else:  # Adult
+    if is_student and is_matinee:
+        price = 8
+        print("🎬 Student adult matinee ticket: $8")
+    elif is_student:
+        price = 11
+        print("🎬 Student adult regular ticket: $11")
+    elif is_matinee:
+        price = 10
+        print("🎬 Adult matinee ticket: $10")
+    else:
+        price = 15
+        print("🎬 Adult regular ticket: $15")
+
+print(f"Total price: ${price}")
+
+# Interactive Quiz with Conditions
+# --------------------------------
+print("\n--- Interactive Quiz with Scoring ---")
+
+score = 0
+total_questions = 4
+
+print("Answer the following questions:")
+
+# Question 1
+answer1 = input("What is 2 + 2? ")
+if int(answer1) == 4:
+    print("✅ Correct!")
+    score += 1
+else:
+    print("❌ Incorrect. 2 + 2 = 4")
+
+# Question 2
+answer2 = input("Is Python a programming language? (yes/no): ").lower()
+if answer2 in ["yes", "y"]:
+    print("✅ Correct!")
+    score += 1
+else:
+    print("❌ Incorrect. Python is indeed a programming language.")
+
+# Question 3
+answer3 = input("What is the capital of Pakistan? ").lower()
+if answer3 == "islamabad":
+    print("✅ Correct!")
+    score += 1
+else:
+    print("❌ Incorrect. The capital is Islamabad.")
+
+# Question 4
+answer4 = input("Enter a number between 1 and 10: ")
+num = int(answer4)
+if 1 <= num <= 10:
+    print("✅ Valid number!")
+    score += 1
+else:
+    print("❌ Number must be between 1 and 10.")
+
+# Calculate percentage and give feedback
+percentage = (score / total_questions) * 100
+
+print(f"\n📊 Quiz Results: {score}/{total_questions} ({percentage:.1f}%)")
+
+if percentage >= 90:
+    print("🏆 Outstanding! Perfect score!")
+elif percentage >= 80:
+    print("🥇 Excellent! Great job!")
+elif percentage >= 70:
+    print("🥈 Good work! Keep it up!")
+elif percentage >= 60:
+    print("🥉 Satisfactory. Room for improvement.")
+else:
+    print("📚 Needs more practice. Review the material!")
+
+# Best Practices
+# --------------
+# 1. Use clear, descriptive condition names
+# 2. Keep conditions simple and readable
+# 3. Use parentheses to group complex conditions
+# 4. Always handle the else case when appropriate
+# 5. Use meaningful variable names
+# 6. Add comments for complex logic
+
+# Common Mistakes to Avoid
+# ------------------------
+# - Using = instead of == for comparison
+# - Forgetting to convert input to appropriate type
+# - Not handling all possible cases
+# - Making conditions too complex
+
+# Summary
+# -------
+# - if/elif/else statements make decisions in your code
+# - Comparison operators: ==, !=, >, <, >=, <=
+# - Logical operators: and, or, not
+# - Use elif for multiple conditions
+# - Always consider the else case
+# - Keep conditions simple and readable
