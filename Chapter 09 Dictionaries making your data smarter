@@ -134,10 +134,10 @@ print("\n--- Looping Through Dictionaries ---")
 
 # Restore inventory
 inventory = {
-    "🍎 apples": 50,
-    "🍌 bananas": 30,
-    "🍊 oranges": 25,
-    "🍇 grapes": 40
+    "apples": 50,
+    "bananas": 30,
+    "oranges": 25,
+    "grapes": 40
 }
 
 # Loop through keys
@@ -226,28 +226,28 @@ def add_contact(name, phone, email="", address=""):
         "email": email,
         "address": address
     }
-    print(f"✅ Added {name} to contacts")
+    print(f"Added {name} to contacts")
 
 def view_contact(name):
     """View details of a specific contact"""
     if name in contacts:
-        print(f"\n📋 Contact: {name}")
+        print(f"\n Contact: {name}")
         for key, value in contacts[name].items():
             if value:  # Only show non-empty values
                 print(f"  {key.title()}: {value}")
     else:
-        print(f"❌ Contact '{name}' not found")
+        print(f" Contact '{name}' not found")
 
 def view_all_contacts():
     """Display all contacts"""
     if not contacts:
-        print("📚 No contacts saved yet.")
+        print(" No contacts saved yet.")
         return
     
-    print("\n📋 All Contacts:")
+    print("\n All Contacts:")
     print("-" * 40)
     for name, details in contacts.items():
-        print(f"👤 {name}")
+        print(f" {name}")
         for key, value in details.items():
             if value:
                 print(f"   {key.title()}: {value}")
@@ -265,19 +265,19 @@ def search_contacts(keyword):
             results.append(name)
     
     if results:
-        print(f"🔍 Search results for '{keyword}':")
+        print(f" Search results for '{keyword}':")
         for name in results:
             view_contact(name)
     else:
-        print(f"🔍 No contacts found matching '{keyword}'")
+        print(f" No contacts found matching '{keyword}'")
 
 def delete_contact(name):
     """Delete a contact"""
     if name in contacts:
         del contacts[name]
-        print(f"❌ Deleted contact: {name}")
+        print(f"Deleted contact: {name}")
     else:
-        print(f"❌ Contact '{name}' not found")
+        print(f" Contact '{name}' not found")
 
 # Test the contact book
 add_contact("Ali Khan", "123-456-7890", "ali@email.com", "Karachi")
@@ -301,7 +301,7 @@ def add_student(name, student_id):
         "grades": {},
         "average": 0.0
     }
-    print(f"✅ Added student: {name} (ID: {student_id})")
+    print(f"Added student: {name} (ID: {student_id})")
 
 def add_grade(name, subject, grade):
     """Add a grade for a student"""
@@ -310,40 +310,40 @@ def add_grade(name, subject, grade):
         # Recalculate average
         grades = gradebook[name]["grades"].values()
         gradebook[name]["average"] = sum(grades) / len(grades)
-        print(f"✅ Added {subject} grade ({grade}) for {name}")
+        print(f"Added {subject} grade ({grade}) for {name}")
     else:
-        print(f"❌ Student '{name}' not found")
+        print(f" Student '{name}' not found")
 
 def view_student(name):
     """View a student's grades and average"""
     if name in gradebook:
         student = gradebook[name]
-        print(f"\n📊 Student: {name} (ID: {student['id']})")
+        print(f"\nStudent: {name} (ID: {student['id']})")
         print("Grades:")
         for subject, grade in student["grades"].items():
             print(f"  {subject}: {grade}")
-        print(f"📈 Average: {student['average']:.2f}")
+        print(f"Average: {student['average']:.2f}")
     else:
-        print(f"❌ Student '{name}' not found")
+        print(f" Student '{name}' not found")
 
 def get_class_average():
     """Calculate and display class average"""
     if not gradebook:
-        print("📚 No students in gradebook.")
+        print(" No students in gradebook.")
         return
     
     total_average = sum(student["average"] for student in gradebook.values())
     class_average = total_average / len(gradebook)
-    print(f"📊 Class Average: {class_average:.2f}")
+    print(f"Class Average: {class_average:.2f}")
 
 def find_top_student():
     """Find the student with the highest average"""
     if not gradebook:
-        print("📚 No students in gradebook.")
+        print(" No students in gradebook.")
         return
     
     top_student = max(gradebook.items(), key=lambda x: x[1]["average"])
-    print(f"🏆 Top Student: {top_student[0]} (Average: {top_student[1]['average']:.2f})")
+    print(f" Top Student: {top_student[0]} (Average: {top_student[1]['average']:.2f})")
 
 # Test the grade tracker
 add_student("Ali", "S001")
@@ -380,16 +380,16 @@ def add_item(name, quantity, price, category="General"):
         "category": category,
         "total_value": quantity * price
     }
-    print(f"✅ Added {quantity} {name}(s) at ${price:.2f} each")
+    print(f" Added {quantity} {name}(s) at ${price:.2f} each")
 
 def update_quantity(name, new_quantity):
     """Update item quantity"""
     if name in inventory:
         inventory[name]["quantity"] = new_quantity
         inventory[name]["total_value"] = new_quantity * inventory[name]["price"]
-        print(f"✅ Updated {name} quantity to {new_quantity}")
+        print(f"Updated {name} quantity to {new_quantity}")
     else:
-        print(f"❌ Item '{name}' not found")
+        print(f" Item '{name}' not found")
 
 def sell_item(name, quantity_sold):
     """Sell items and update inventory"""
@@ -399,23 +399,23 @@ def sell_item(name, quantity_sold):
             new_quantity = current_quantity - quantity_sold
             update_quantity(name, new_quantity)
             revenue = quantity_sold * inventory[name]["price"]
-            print(f"💰 Sold {quantity_sold} {name}(s) for ${revenue:.2f}")
+            print(f"Sold {quantity_sold} {name}(s) for ${revenue:.2f}")
         else:
-            print(f"❌ Not enough {name} in stock. Available: {current_quantity}")
+            print(f"Not enough {name} in stock. Available: {current_quantity}")
     else:
-        print(f"❌ Item '{name}' not found")
+        print(f" Item '{name}' not found")
 
 def view_inventory():
     """Display all inventory items"""
     if not inventory:
-        print("📦 Inventory is empty.")
+        print(" Inventory is empty.")
         return
     
-    print("\n📦 Current Inventory:")
+    print("\n Current Inventory:")
     print("-" * 50)
     total_value = 0
     for name, details in inventory.items():
-        print(f"📦 {name}")
+        print(f" {name}")
         print(f"   Quantity: {details['quantity']}")
         print(f"   Price: ${details['price']:.2f}")
         print(f"   Category: {details['category']}")
@@ -423,7 +423,7 @@ def view_inventory():
         print()
         total_value += details['total_value']
     
-    print(f"💰 Total Inventory Value: ${total_value:.2f}")
+    print(f" Total Inventory Value: ${total_value:.2f}")
 
 def low_stock_alert(threshold=5):
     """Show items with low stock"""
@@ -431,11 +431,11 @@ def low_stock_alert(threshold=5):
                       if details['quantity'] <= threshold}
     
     if low_stock_items:
-        print(f"⚠️  Low Stock Alert (≤{threshold} items):")
+        print(f"⚠  Low Stock Alert (≤{threshold} items):")
         for name, details in low_stock_items.items():
             print(f"   {name}: {details['quantity']} remaining")
     else:
-        print("✅ All items have sufficient stock.")
+        print(" All items have sufficient stock.")
 
 # Test the inventory system
 add_item("Laptop", 10, 999.99, "Electronics")
