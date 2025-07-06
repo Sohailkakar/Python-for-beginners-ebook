@@ -1,61 +1,189 @@
-# Chapter 12: Building a Quiz Game – Test What You’ve Learned
+# Chapter 13: Building a Complete Quiz Application
 
-# In this chapter, you’ll combine everything you’ve learned so far to build a simple Quiz Game.
-# You'll use variables, lists, loops, conditionals, and input/output.
+# In this chapter, we'll build a comprehensive quiz application using everything we've learned.
 
-# Let's start by creating the questions and answers.
-
+# Quiz data structure
 questions = [
     {
         "question": "What does CPU stand for?",
         "options": ["Central Processing Unit", "Computer Personal Unit", "Central Programming Unit"],
-        "answer": "Central Processing Unit"
+        "answer": "Central Processing Unit",
+        "category": "Computer Science"
     },
     {
         "question": "Which keyword is used to define a function in Python?",
         "options": ["func", "define", "def"],
-        "answer": "def"
+        "answer": "def",
+        "category": "Python"
     },
     {
         "question": "Which data type is used to store True or False?",
         "options": ["String", "Boolean", "Integer"],
-        "answer": "Boolean"
+        "answer": "Boolean",
+        "category": "Python"
+    },
+    {
+        "question": "What is the result of 2 ** 3?",
+        "options": ["6", "8", "5"],
+        "answer": "8",
+        "category": "Math"
+    },
+    {
+        "question": "Which method is used to add an item to a list?",
+        "options": ["add()", "append()", "insert()"],
+        "answer": "append()",
+        "category": "Python"
     }
 ]
 
-# We will create a function to run the quiz
-def run_quiz(questions):
-    score = 0  # To keep track of correct answers
-
-    for q in questions:
-        print("\n" + q["question"])
-        for idx, option in enumerate(q["options"], start=1):
+class QuizGame:
+    def __init__(self, questions):
+        self.questions = questions
+        self.score = 0
+        self.total_questions = len(questions)
+    
+    def display_welcome(self):
+        print("Welcome to the Python Quiz Game!")
+        print(f"Total questions: {self.total_questions}")
+        print("Categories: Computer Science, Python, Math")
+        print("-" * 40)
+    
+    def ask_question(self, question_data):
+        print(f"\nQuestion: {question_data['question']}")
+        print(f"Category: {question_data['category']}")
+        
+        for idx, option in enumerate(question_data['options'], 1):
             print(f"{idx}. {option}")
+        
+        while True:
+            try:
+                choice = int(input("Enter your choice (1-3): "))
+                if 1 <= choice <= 3:
+                    return choice - 1
+                else:
+                    print("Please enter 1, 2, or 3.")
+            except ValueError:
+                print("Please enter a valid number.")
+    
+    def check_answer(self, question_data, user_choice):
+        correct_answer = question_data['answer']
+        user_answer = question_data['options'][user_choice]
+        
+        if user_answer.lower() == correct_answer.lower():
+            print("Correct!")
+            self.score += 1
+            return True
+        else:
+            print(f"Incorrect. The correct answer was: {correct_answer}")
+            return False
+    
+    def calculate_percentage(self):
+        return (self.score / self.total_questions) * 100
+    
+    def display_final_results(self):
+        print("\n" + "=" * 40)
+        print("QUIZ RESULTS")
+        print("=" * 40)
+        print(f"Score: {self.score}/{self.total_questions}")
+        print(f"Percentage: {self.calculate_percentage():.1f}%")
+        
+        if self.calculate_percentage() >= 90:
+            print("Grade: A - Excellent!")
+        elif self.calculate_percentage() >= 80:
+            print("Grade: B - Good job!")
+        elif self.calculate_percentage() >= 70:
+            print("Grade: C - Not bad!")
+        elif self.calculate_percentage() >= 60:
+            print("Grade: D - Needs improvement!")
+        else:
+            print("Grade: F - Review the material!")
+    
+    def run_quiz(self):
+        self.display_welcome()
+        
+        for i, question in enumerate(self.questions, 1):
+            print(f"\nQuestion {i} of {self.total_questions}")
+            user_choice = self.ask_question(question)
+            self.check_answer(question, user_choice)
+        
+        self.display_final_results()
 
-        try:
-            choice = int(input("Enter your choice (1/2/3): "))
-            if q["options"][choice - 1].lower() == q["answer"].lower():
-                print(" Correct!")
-                score += 1
+# Function to add new questions
+def add_question(question_list):
+    print("\nAdding a new question:")
+    question = input("Enter the question: ")
+    
+    options = []
+    for i in range(3):
+        option = input(f"Enter option {i+1}: ")
+        options.append(option)
+    
+    answer = input("Enter the correct answer: ")
+    category = input("Enter category: ")
+    
+    new_question = {
+        "question": question,
+        "options": options,
+        "answer": answer,
+        "category": category
+    }
+    
+    question_list.append(new_question)
+    print("Question added successfully!")
+
+# Function to filter questions by category
+def filter_by_category(questions, category):
+    return [q for q in questions if q['category'].lower() == category.lower()]
+
+# Main quiz application
+def main():
+    print("Python Quiz Application")
+    print("1. Take full quiz")
+    print("2. Take category quiz")
+    print("3. Add new question")
+    print("4. View all questions")
+    print("5. Exit")
+    
+    while True:
+        choice = input("\nEnter your choice (1-5): ")
+        
+        if choice == "1":
+            quiz = QuizGame(questions)
+            quiz.run_quiz()
+        
+        elif choice == "2":
+            print("Available categories: Computer Science, Python, Math")
+            category = input("Enter category: ")
+            filtered_questions = filter_by_category(questions, category)
+            
+            if filtered_questions:
+                quiz = QuizGame(filtered_questions)
+                quiz.run_quiz()
             else:
-                print(f" Incorrect. The correct answer was: {q['answer']}")
-        except (ValueError, IndexError):
-            print(" Invalid input. Moving to the next question.")
+                print("No questions found for this category.")
+        
+        elif choice == "3":
+            add_question(questions)
+        
+        elif choice == "4":
+            print("\nAll Questions:")
+            for i, q in enumerate(questions, 1):
+                print(f"{i}. {q['question']} ({q['category']})")
+        
+        elif choice == "5":
+            print("Thanks for playing!")
+            break
+        
+        else:
+            print("Invalid choice. Please try again.")
 
-    print(f"\nYour final score is: {score} out of {len(questions)}")
+# Run the application
+if __name__ == "__main__":
+    main()
 
-    if score == len(questions):
-        print(" Excellent! You got all answers right.")
-    elif score > 0:
-        print(" Good effort! Keep practising.")
-    else:
-        print(" Don’t worry, review the chapters and try again.")
-
-# Running the quiz
-print(" Welcome to the Python Quiz Game!")
-run_quiz(questions)
-
-# In this chapter, you learned:
-# - How to store multiple questions using lists and dictionaries
-# - How to create a function that handles a complete interactive quiz
-# - How to use loops, conditionals, and inputs together in one project
+# Summary
+# - Used classes to organize quiz functionality
+# - Implemented error handling for user input
+# - Created a menu-driven application
+# - Added features like category filtering and question management
+# - Combined all Python concepts learned so far
