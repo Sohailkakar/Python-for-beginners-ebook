@@ -102,7 +102,7 @@ Python-for-beginners-ebook/
 └── README.md
 ```
 
-## 🛠 What You'll Build
+##  What You'll Build
 
 Throughout this ebook, you'll create several practical applications:
 
