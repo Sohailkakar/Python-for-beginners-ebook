@@ -1,88 +1,483 @@
-# Chapter 8: Dictionaries – Making Your Data Smarter
+# Chapter 9: Dictionaries – Making Your Data Smarter
+# ==================================================
 
-# A dictionary in Python is used to store data in key-value pairs.
-# It's like a mini database where each value has a name (the key).
+# What are Dictionaries?
+# ----------------------
+# Dictionaries are collections of key-value pairs that store data in an organized way.
+# Think of dictionaries as real-world dictionaries where you look up a word (key) to find
+# its meaning (value). They're perfect for storing related information together.
 
-# Example 1: Creating and printing a dictionary
+# Key Features of Dictionaries:
+# - Key-value pairs (each value has a unique key)
+# - Unordered (in Python 3.7+, insertion order is preserved)
+# - Mutable (can be changed after creation)
+# - Keys must be immutable (strings, numbers, tuples)
+# - Values can be any data type
+# - Fast lookup by key
+
+# Creating Dictionaries
+# ---------------------
+print("--- Creating Dictionaries ---")
+
+# Empty dictionary
+empty_dict = {}
+print(f"Empty dictionary: {empty_dict}")
+
+# Dictionary with key-value pairs
 person = {
     "name": "Sohail",
     "age": 25,
-    "city": "Karachi"
+    "city": "Karachi",
+    "profession": "Programmer"
 }
-print("Person info:", person)
+print(f"Person: {person}")
 
-# Example 2: Accessing values by keys
-print("Name:", person["name"])
-print("City:", person["city"])
+# Dictionary with different data types
+student = {
+    "name": "Ali",
+    "grades": [85, 92, 78, 96],
+    "is_active": True,
+    "subjects": {"math": "A", "science": "B", "english": "A"}
+}
+print(f"Student: {student}")
 
-# Example 3: Adding new key-value pairs
-person["profession"] = "Programmer"
-print("Updated person:", person)
+# Using dict() constructor
+colors = dict(red="#FF0000", green="#00FF00", blue="#0000FF")
+print(f"Colors: {colors}")
 
-# Example 4: Changing existing values
+# Accessing Dictionary Values
+# ---------------------------
+print("\n--- Accessing Dictionary Values ---")
+
+# Direct key access
+print(f"Name: {person['name']}")
+print(f"Age: {person['age']}")
+
+# Using get() method (safer)
+print(f"City: {person.get('city')}")
+print(f"Country: {person.get('country', 'Not specified')}")  # Default value
+
+# Accessing nested values
+print(f"Math grade: {student['subjects']['math']}")
+
+# Modifying Dictionaries
+# ----------------------
+print("\n--- Modifying Dictionaries ---")
+
+# Adding new key-value pairs
+person["email"] = "sohail@example.com"
+print(f"After adding email: {person}")
+
+# Updating existing values
 person["age"] = 26
-print("After birthday:", person)
+print(f"After birthday: {person}")
 
-# Example 5: Removing a key-value pair
-del person["city"]
-print("After removing city:", person)
+# Using update() method
+person.update({"phone": "123-456-7890", "website": "sohail.dev"})
+print(f"After update: {person}")
 
-# Example 6: Looping through a dictionary
-for key, value in person.items():
-    print(key + ":", value)
+# Removing Items
+# --------------
+print("\n--- Removing Items ---")
 
-# Example 7: Using get() to avoid errors when key is missing
-print("Country:", person.get("country", "Not specified"))
+# Using del
+del person["website"]
+print(f"After del: {person}")
 
-# In this chapter, you learned:
-# - How to create, access, add, change, and delete dictionary items
-# - How to loop through dictionaries safely
+# Using pop() (removes and returns value)
+phone = person.pop("phone")
+print(f"Popped phone: {phone}")
+print(f"After pop: {person}")
 
+# Using popitem() (removes and returns last item)
+last_item = person.popitem()
+print(f"Popped item: {last_item}")
+print(f"After popitem: {person}")
 
-# 🛠️ Mini Project: Simple Contact Book
+# Dictionary Methods
+# ------------------
+print("\n--- Dictionary Methods ---")
 
-# In this project, users can add, view, and search contacts stored in a dictionary.
+# Creating a new dictionary for demonstrations
+inventory = {
+    "apples": 50,
+    "bananas": 30,
+    "oranges": 25,
+    "grapes": 40
+}
+
+print(f"Original inventory: {inventory}")
+
+# keys() - get all keys
+keys = list(inventory.keys())
+print(f"Keys: {keys}")
+
+# values() - get all values
+values = list(inventory.values())
+print(f"Values: {values}")
+
+# items() - get all key-value pairs
+items = list(inventory.items())
+print(f"Items: {items}")
+
+# copy() - create a copy
+inventory_copy = inventory.copy()
+print(f"Copy: {inventory_copy}")
+
+# clear() - remove all items
+inventory.clear()
+print(f"After clear: {inventory}")
+
+# Looping Through Dictionaries
+# ----------------------------
+print("\n--- Looping Through Dictionaries ---")
+
+# Restore inventory
+inventory = {
+    "🍎 apples": 50,
+    "🍌 bananas": 30,
+    "🍊 oranges": 25,
+    "🍇 grapes": 40
+}
+
+# Loop through keys
+print("Keys:")
+for key in inventory.keys():
+    print(f"  {key}")
+
+# Loop through values
+print("\nValues:")
+for value in inventory.values():
+    print(f"  {value}")
+
+# Loop through items (key-value pairs)
+print("\nItems:")
+for key, value in inventory.items():
+    print(f"  {key}: {value}")
+
+# Dictionary Comprehension
+# ------------------------
+print("\n--- Dictionary Comprehension ---")
+
+# Traditional way
+squares = {}
+for i in range(1, 6):
+    squares[i] = i ** 2
+print(f"Squares (traditional): {squares}")
+
+# Dictionary comprehension way
+squares_comp = {i: i ** 2 for i in range(1, 6)}
+print(f"Squares (comprehension): {squares_comp}")
+
+# With condition
+even_squares = {i: i ** 2 for i in range(1, 11) if i % 2 == 0}
+print(f"Even squares: {even_squares}")
+
+# String manipulation
+words = ["hello", "world", "python"]
+word_lengths = {word: len(word) for word in words}
+print(f"Word lengths: {word_lengths}")
+
+# Nested Dictionaries
+# -------------------
+print("\n--- Nested Dictionaries ---")
+
+# Creating a nested dictionary
+company = {
+    "name": "TechCorp",
+    "employees": {
+        "manager": {
+            "name": "Ahmed",
+            "age": 35,
+            "salary": 75000
+        },
+        "developer": {
+            "name": "Sara",
+            "age": 28,
+            "salary": 65000
+        },
+        "designer": {
+            "name": "Fatima",
+            "age": 30,
+            "salary": 60000
+        }
+    },
+    "departments": ["IT", "HR", "Marketing"]
+}
+
+print("Company structure:")
+print(f"Name: {company['name']}")
+print("Employees:")
+for role, details in company['employees'].items():
+    print(f"  {role.title()}: {details['name']} (${details['salary']:,})")
+
+# Practical Examples
+# ------------------
+
+# 1. Enhanced Contact Book
+print("\n--- Enhanced Contact Book ---")
 
 contacts = {}
 
-print("\n Welcome to Your Contact Book!")
+def add_contact(name, phone, email="", address=""):
+    """Add a new contact with multiple details"""
+    contacts[name] = {
+        "phone": phone,
+        "email": email,
+        "address": address
+    }
+    print(f"✅ Added {name} to contacts")
 
-while True:
-    print("\nChoose an option:")
-    print("1. Add Contact")
-    print("2. View All Contacts")
-    print("3. Search Contact by Name")
-    print("4. Exit")
-
-    choice = input("Enter your choice (1-4): ")
-
-    if choice == "1":
-        name = input("Enter contact name: ").strip()
-        phone = input("Enter phone number: ").strip()
-        if name and phone:
-            contacts[name] = phone
-            print(f"{name} added with number {phone}.")
-        else:
-            print("Both name and phone number are required.")
-
-    elif choice == "2":
-        if contacts:
-            print("\nYour Contacts:")
-            for name, number in contacts.items():
-                print(f"{name}: {number}")
-        else:
-            print("No contacts saved yet.")
-
-    elif choice == "3":
-        search_name = input("Enter the name to search: ").strip()
-        if search_name in contacts:
-            print(f"{search_name}'s number is {contacts[search_name]}")
-        else:
-            print("Contact not found.")
-
-    elif choice == "4":
-        print("Goodbye! ")
-        break
-
+def view_contact(name):
+    """View details of a specific contact"""
+    if name in contacts:
+        print(f"\n📋 Contact: {name}")
+        for key, value in contacts[name].items():
+            if value:  # Only show non-empty values
+                print(f"  {key.title()}: {value}")
     else:
-        print("Invalid choice. Please try again.")
+        print(f"❌ Contact '{name}' not found")
+
+def view_all_contacts():
+    """Display all contacts"""
+    if not contacts:
+        print("📚 No contacts saved yet.")
+        return
+    
+    print("\n📋 All Contacts:")
+    print("-" * 40)
+    for name, details in contacts.items():
+        print(f"👤 {name}")
+        for key, value in details.items():
+            if value:
+                print(f"   {key.title()}: {value}")
+        print()
+
+def search_contacts(keyword):
+    """Search contacts by name or phone"""
+    results = []
+    keyword = keyword.lower()
+    
+    for name, details in contacts.items():
+        if (keyword in name.lower() or 
+            keyword in details['phone'] or 
+            keyword in details['email'].lower()):
+            results.append(name)
+    
+    if results:
+        print(f"🔍 Search results for '{keyword}':")
+        for name in results:
+            view_contact(name)
+    else:
+        print(f"🔍 No contacts found matching '{keyword}'")
+
+def delete_contact(name):
+    """Delete a contact"""
+    if name in contacts:
+        del contacts[name]
+        print(f"❌ Deleted contact: {name}")
+    else:
+        print(f"❌ Contact '{name}' not found")
+
+# Test the contact book
+add_contact("Ali Khan", "123-456-7890", "ali@email.com", "Karachi")
+add_contact("Sara Ahmed", "098-765-4321", "sara@email.com")
+add_contact("Ahmed Hassan", "555-123-4567", "ahmed@email.com", "Lahore")
+
+view_all_contacts()
+search_contacts("ali")
+delete_contact("Sara Ahmed")
+view_all_contacts()
+
+# 2. Student Grade Tracker
+print("\n--- Student Grade Tracker ---")
+
+gradebook = {}
+
+def add_student(name, student_id):
+    """Add a new student to the gradebook"""
+    gradebook[name] = {
+        "id": student_id,
+        "grades": {},
+        "average": 0.0
+    }
+    print(f"✅ Added student: {name} (ID: {student_id})")
+
+def add_grade(name, subject, grade):
+    """Add a grade for a student"""
+    if name in gradebook:
+        gradebook[name]["grades"][subject] = grade
+        # Recalculate average
+        grades = gradebook[name]["grades"].values()
+        gradebook[name]["average"] = sum(grades) / len(grades)
+        print(f"✅ Added {subject} grade ({grade}) for {name}")
+    else:
+        print(f"❌ Student '{name}' not found")
+
+def view_student(name):
+    """View a student's grades and average"""
+    if name in gradebook:
+        student = gradebook[name]
+        print(f"\n📊 Student: {name} (ID: {student['id']})")
+        print("Grades:")
+        for subject, grade in student["grades"].items():
+            print(f"  {subject}: {grade}")
+        print(f"📈 Average: {student['average']:.2f}")
+    else:
+        print(f"❌ Student '{name}' not found")
+
+def get_class_average():
+    """Calculate and display class average"""
+    if not gradebook:
+        print("📚 No students in gradebook.")
+        return
+    
+    total_average = sum(student["average"] for student in gradebook.values())
+    class_average = total_average / len(gradebook)
+    print(f"📊 Class Average: {class_average:.2f}")
+
+def find_top_student():
+    """Find the student with the highest average"""
+    if not gradebook:
+        print("📚 No students in gradebook.")
+        return
+    
+    top_student = max(gradebook.items(), key=lambda x: x[1]["average"])
+    print(f"🏆 Top Student: {top_student[0]} (Average: {top_student[1]['average']:.2f})")
+
+# Test the grade tracker
+add_student("Ali", "S001")
+add_student("Sara", "S002")
+add_student("Ahmed", "S003")
+
+add_grade("Ali", "Math", 85)
+add_grade("Ali", "Science", 92)
+add_grade("Ali", "English", 78)
+
+add_grade("Sara", "Math", 96)
+add_grade("Sara", "Science", 88)
+add_grade("Sara", "English", 95)
+
+add_grade("Ahmed", "Math", 72)
+add_grade("Ahmed", "Science", 85)
+add_grade("Ahmed", "English", 90)
+
+view_student("Ali")
+view_student("Sara")
+get_class_average()
+find_top_student()
+
+# 3. Inventory Management System
+print("\n--- Inventory Management System ---")
+
+inventory = {}
+
+def add_item(name, quantity, price, category="General"):
+    """Add an item to inventory"""
+    inventory[name] = {
+        "quantity": quantity,
+        "price": price,
+        "category": category,
+        "total_value": quantity * price
+    }
+    print(f"✅ Added {quantity} {name}(s) at ${price:.2f} each")
+
+def update_quantity(name, new_quantity):
+    """Update item quantity"""
+    if name in inventory:
+        inventory[name]["quantity"] = new_quantity
+        inventory[name]["total_value"] = new_quantity * inventory[name]["price"]
+        print(f"✅ Updated {name} quantity to {new_quantity}")
+    else:
+        print(f"❌ Item '{name}' not found")
+
+def sell_item(name, quantity_sold):
+    """Sell items and update inventory"""
+    if name in inventory:
+        current_quantity = inventory[name]["quantity"]
+        if current_quantity >= quantity_sold:
+            new_quantity = current_quantity - quantity_sold
+            update_quantity(name, new_quantity)
+            revenue = quantity_sold * inventory[name]["price"]
+            print(f"💰 Sold {quantity_sold} {name}(s) for ${revenue:.2f}")
+        else:
+            print(f"❌ Not enough {name} in stock. Available: {current_quantity}")
+    else:
+        print(f"❌ Item '{name}' not found")
+
+def view_inventory():
+    """Display all inventory items"""
+    if not inventory:
+        print("📦 Inventory is empty.")
+        return
+    
+    print("\n📦 Current Inventory:")
+    print("-" * 50)
+    total_value = 0
+    for name, details in inventory.items():
+        print(f"📦 {name}")
+        print(f"   Quantity: {details['quantity']}")
+        print(f"   Price: ${details['price']:.2f}")
+        print(f"   Category: {details['category']}")
+        print(f"   Total Value: ${details['total_value']:.2f}")
+        print()
+        total_value += details['total_value']
+    
+    print(f"💰 Total Inventory Value: ${total_value:.2f}")
+
+def low_stock_alert(threshold=5):
+    """Show items with low stock"""
+    low_stock_items = {name: details for name, details in inventory.items() 
+                      if details['quantity'] <= threshold}
+    
+    if low_stock_items:
+        print(f"⚠️  Low Stock Alert (≤{threshold} items):")
+        for name, details in low_stock_items.items():
+            print(f"   {name}: {details['quantity']} remaining")
+    else:
+        print("✅ All items have sufficient stock.")
+
+# Test the inventory system
+add_item("Laptop", 10, 999.99, "Electronics")
+add_item("Mouse", 50, 25.50, "Electronics")
+add_item("Notebook", 100, 5.99, "Stationery")
+add_item("Coffee", 25, 12.99, "Beverages")
+
+view_inventory()
+sell_item("Laptop", 3)
+sell_item("Mouse", 45)
+sell_item("Coffee", 20)
+
+view_inventory()
+low_stock_alert()
+
+# Best Practices
+# --------------
+# 1. Use descriptive key names
+# 2. Keep dictionary structure consistent
+# 3. Use .get() method for safe access
+# 4. Consider using defaultdict for missing keys
+# 5. Use dictionary comprehension for transformations
+# 6. Validate data before adding to dictionaries
+
+# Common Dictionary Operations
+# ---------------------------
+# - len(dict) - get number of key-value pairs
+# - dict[key] - access value by key
+# - dict.get(key, default) - safe access with default
+# - dict[key] = value - add or update
+# - del dict[key] - remove key-value pair
+# - dict.pop(key) - remove and return value
+# - dict.clear() - remove all items
+# - dict.copy() - create a copy
+# - dict.update(other_dict) - merge dictionaries
+
+# Summary
+# -------
+# - Dictionaries store key-value pairs
+# - Use keys to access values quickly
+# - Dictionaries are mutable and flexible
+# - Use .get() for safe access
+# - Dictionary comprehension provides concise syntax
+# - Nested dictionaries create complex data structures
+# - Dictionaries are essential for data organization
