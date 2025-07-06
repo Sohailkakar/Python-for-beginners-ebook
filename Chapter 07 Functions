@@ -1,54 +1,249 @@
-# Chapter 6: Functions – Reusable Blocks of Code
+# Chapter 7: Functions – Reusable Blocks of Code
+# ==============================================
 
-# A function is a block of code that performs a specific task.
-# Functions help us write cleaner, reusable, and more organised code.
+# What are Functions?
+# -------------------
+# Functions are reusable blocks of code that perform specific tasks.
+# Think of functions as mini-programs within your program - like tools in a toolbox
+# that you can use over and over again without rewriting the same code.
 
-# Example 1: Defining and calling a simple function
+# Benefits of Functions:
+# - Code reusability (write once, use many times)
+# - Better organization and readability
+# - Easier testing and debugging
+# - Modular programming
+
+# Basic Function Structure
+# ------------------------
+# def function_name(parameters):
+#     """docstring - describes what the function does"""
+#     # function body
+#     return value (optional)
+
+# Simple Function (No Parameters)
+# ------------------------------
+print("--- Simple Function ---")
+
 def greet():
-    print("Hello, welcome to the world of functions!")
+    """Prints a welcome message"""
+    print("👋 Hello, welcome to the world of functions!")
 
 # Calling the function
 greet()
+greet()  # Can be called multiple times
 
-# Example 2: Function with one parameter
+# Function with Parameters
+# ------------------------
+print("\n--- Function with Parameters ---")
+
 def greet_user(name):
-    print("Hello,", name)
+    """Greets a specific user by name"""
+    print(f"👋 Hello, {name}! Nice to meet you!")
 
+# Calling with different arguments
 greet_user("Sohail")
+greet_user("Ahmed")
+greet_user("Fatima")
 
-# Example 3: Function with multiple parameters
+# Function with Multiple Parameters
+# --------------------------------
+print("\n--- Function with Multiple Parameters ---")
+
+def introduce(name, age, city):
+    """Introduces a person with their details"""
+    print(f"👤 Name: {name}")
+    print(f"🎂 Age: {age}")
+    print(f"🏙️  City: {city}")
+
+introduce("Ali", 25, "Karachi")
+introduce("Sara", 30, "Lahore")
+
+# Function with Return Values
+# ---------------------------
+print("\n--- Functions with Return Values ---")
+
 def add_numbers(a, b):
+    """Adds two numbers and returns the result"""
     result = a + b
-    print("The sum is:", result)
+    return result
 
-add_numbers(5, 10)
-
-# Example 4: Function that returns a value
-def multiply(x, y):
+def multiply_numbers(x, y):
+    """Multiplies two numbers and returns the result"""
     return x * y
 
-product = multiply(4, 3)
-print("The product is:", product)
+# Using return values
+sum_result = add_numbers(5, 10)
+product_result = multiply_numbers(4, 3)
 
-# Example 5: Using default parameter values
-def welcome_message(name="Guest"):
-    print("Welcome,", name)
+print(f"➕ Sum: {sum_result}")
+print(f"✖️  Product: {product_result}")
 
-welcome_message()
-welcome_message("Sohail")
+# Using return values in calculations
+total = add_numbers(10, 20) + multiply_numbers(5, 2)
+print(f"📊 Total calculation: {total}")
 
-# Functions can also be called inside loops or other functions, making them very powerful.
+# Default Parameters
+# ------------------
+print("\n--- Default Parameters ---")
 
-# In this chapter, you learned:
-# - How to create and call functions
-# - How to pass arguments
-# - How to return values
-# - How to use default values
+def welcome_message(name="Guest", greeting="Welcome"):
+    """Welcomes a user with customizable greeting"""
+    print(f"{greeting}, {name}!")
 
+# Using default values
+welcome_message()  # Uses both defaults
+welcome_message("Sohail")  # Uses default greeting
+welcome_message("Ahmed", "Hello")  # Uses custom values
 
-# 🛠️ Mini Project: Basic Calculator Using Functions
+# Multiple Return Values
+# ----------------------
+print("\n--- Multiple Return Values ---")
 
-# Let's build a simple calculator where each operation is handled by a separate function.
+def get_circle_info(radius):
+    """Calculates area and circumference of a circle"""
+    import math
+    area = math.pi * radius ** 2
+    circumference = 2 * math.pi * radius
+    return area, circumference
+
+# Unpacking multiple return values
+area, circumference = get_circle_info(5)
+print(f"🔵 Circle with radius 5:")
+print(f"   Area: {area:.2f}")
+print(f"   Circumference: {circumference:.2f}")
+
+# Function with Type Hints (Python 3.5+)
+# --------------------------------------
+print("\n--- Type Hints ---")
+
+def calculate_grade(score: float) -> str:
+    """Calculates grade based on score"""
+    if score >= 90:
+        return "A"
+    elif score >= 80:
+        return "B"
+    elif score >= 70:
+        return "C"
+    elif score >= 60:
+        return "D"
+    else:
+        return "F"
+
+grade = calculate_grade(85.5)
+print(f"📊 Score 85.5 = Grade {grade}")
+
+# Variable Scope
+# --------------
+print("\n--- Variable Scope ---")
+
+global_var = "I'm global"
+
+def scope_demo():
+    """Demonstrates variable scope"""
+    local_var = "I'm local"
+    print(f"Inside function: {local_var}")
+    print(f"Global variable: {global_var}")
+
+scope_demo()
+print(f"Outside function: {global_var}")
+# print(local_var)  # This would cause an error
+
+# Lambda Functions (Anonymous Functions)
+# -------------------------------------
+print("\n--- Lambda Functions ---")
+
+# Regular function
+def square(x):
+    return x ** 2
+
+# Equivalent lambda function
+square_lambda = lambda x: x ** 2
+
+print(f"Regular function: {square(5)}")
+print(f"Lambda function: {square_lambda(5)}")
+
+# Lambda with multiple parameters
+add_lambda = lambda a, b: a + b
+print(f"Lambda addition: {add_lambda(10, 20)}")
+
+# Practical Examples
+# ------------------
+
+# 1. Temperature Converter
+print("\n--- Temperature Converter ---")
+
+def celsius_to_fahrenheit(celsius):
+    """Converts Celsius to Fahrenheit"""
+    return (celsius * 9/5) + 32
+
+def fahrenheit_to_celsius(fahrenheit):
+    """Converts Fahrenheit to Celsius"""
+    return (fahrenheit - 32) * 5/9
+
+# Test the functions
+c_temp = 25
+f_temp = 77
+
+print(f"🌡️  {c_temp}°C = {celsius_to_fahrenheit(c_temp):.1f}°F")
+print(f"🌡️  {f_temp}°F = {fahrenheit_to_celsius(f_temp):.1f}°C")
+
+# 2. String Manipulation Functions
+print("\n--- String Manipulation ---")
+
+def count_vowels(text):
+    """Counts vowels in a string"""
+    vowels = "aeiouAEIOU"
+    count = 0
+    for char in text:
+        if char in vowels:
+            count += 1
+    return count
+
+def reverse_string(text):
+    """Reverses a string"""
+    return text[::-1]
+
+def is_palindrome(text):
+    """Checks if a string is a palindrome"""
+    cleaned = text.lower().replace(" ", "")
+    return cleaned == cleaned[::-1]
+
+# Test string functions
+test_text = "Hello World"
+print(f"📝 Text: '{test_text}'")
+print(f"🔤 Vowels: {count_vowels(test_text)}")
+print(f"🔄 Reversed: '{reverse_string(test_text)}'")
+print(f"🔄 Palindrome check: '{test_text}' = {is_palindrome(test_text)}")
+
+# 3. List Processing Functions
+print("\n--- List Processing ---")
+
+def find_max_min(numbers):
+    """Finds maximum and minimum in a list"""
+    if not numbers:
+        return None, None
+    return max(numbers), min(numbers)
+
+def calculate_average(numbers):
+    """Calculates average of numbers"""
+    if not numbers:
+        return 0
+    return sum(numbers) / len(numbers)
+
+def filter_even_numbers(numbers):
+    """Filters even numbers from a list"""
+    return [num for num in numbers if num % 2 == 0]
+
+# Test list functions
+scores = [85, 92, 78, 96, 88, 75, 90]
+print(f"📊 Scores: {scores}")
+max_score, min_score = find_max_min(scores)
+print(f"📈 Max: {max_score}, Min: {min_score}")
+print(f"📊 Average: {calculate_average(scores):.1f}")
+print(f"🔢 Even numbers: {filter_even_numbers(scores)}")
+
+# 4. Advanced Calculator with Functions
+print("\n--- Advanced Calculator ---")
 
 def add(a, b):
     return a + b
@@ -61,35 +256,104 @@ def multiply(a, b):
 
 def divide(a, b):
     if b == 0:
-        return "Error: Cannot divide by zero!"
+        return "❌ Error: Cannot divide by zero!"
     return a / b
 
-print("\nWelcome to the Function-Based Calculator!")
+def power(a, b):
+    return a ** b
 
-while True:
-    print("\nChoose an operation:")
-    print("1. Add")
-    print("2. Subtract")
-    print("3. Multiply")
-    print("4. Divide")
-    print("5. Exit")
+def calculator():
+    """Interactive calculator using functions"""
+    print("🧮 Welcome to the Advanced Calculator!")
+    
+    while True:
+        print("\nOperations:")
+        print("1. Add (+)")
+        print("2. Subtract (-)")
+        print("3. Multiply (×)")
+        print("4. Divide (÷)")
+        print("5. Power (^)")
+        print("6. Exit")
+        
+        choice = input("Enter choice (1-6): ")
+        
+        if choice == "6":
+            print("👋 Thank you for using the calculator!")
+            break
+        
+        if choice not in ["1", "2", "3", "4", "5"]:
+            print("❌ Invalid choice!")
+            continue
+        
+        try:
+            num1 = float(input("Enter first number: "))
+            num2 = float(input("Enter second number: "))
+            
+            if choice == "1":
+                result = add(num1, num2)
+                print(f"➕ {num1} + {num2} = {result}")
+            elif choice == "2":
+                result = subtract(num1, num2)
+                print(f"➖ {num1} - {num2} = {result}")
+            elif choice == "3":
+                result = multiply(num1, num2)
+                print(f"✖️  {num1} × {num2} = {result}")
+            elif choice == "4":
+                result = divide(num1, num2)
+                print(f"➗ {num1} ÷ {num2} = {result}")
+            elif choice == "5":
+                result = power(num1, num2)
+                print(f"^ {num1} ^ {num2} = {result}")
+                
+        except ValueError:
+            print("❌ Please enter valid numbers!")
 
-    choice = input("Enter choice (1-5): ")
+# Run the calculator
+calculator()
 
-    if choice == "5":
-        print("Thank you for using the calculator. Goodbye!")
-        break
+# 5. Function with Variable Arguments
+print("\n--- Variable Arguments ---")
 
-    num1 = float(input("Enter first number: "))
-    num2 = float(input("Enter second number: "))
+def calculate_total(*args):
+    """Calculates total of any number of arguments"""
+    return sum(args)
 
-    if choice == "1":
-        print("Result:", add(num1, num2))
-    elif choice == "2":
-        print("Result:", subtract(num1, num2))
-    elif choice == "3":
-        print("Result:", multiply(num1, num2))
-    elif choice == "4":
-        print("Result:", divide(num1, num2))
-    else:
-        print("Invalid choice. Please select a valid option.")
+def create_profile(**kwargs):
+    """Creates a user profile with any number of key-value pairs"""
+    profile = "👤 User Profile:\n"
+    for key, value in kwargs.items():
+        profile += f"   {key.title()}: {value}\n"
+    return profile
+
+# Test variable arguments
+total = calculate_total(10, 20, 30, 40, 50)
+print(f"📊 Total: {total}")
+
+profile = create_profile(name="Ali", age=25, city="Karachi", occupation="Developer")
+print(profile)
+
+# Best Practices
+# --------------
+# 1. Use descriptive function names
+# 2. Write docstrings for all functions
+# 3. Keep functions small and focused
+# 4. Use meaningful parameter names
+# 5. Return values instead of printing (when appropriate)
+# 6. Use type hints for better code documentation
+# 7. Handle edge cases and errors
+
+# Common Function Patterns
+# ------------------------
+# - Pure functions: same input always gives same output
+# - Functions with side effects: modify external state
+# - Higher-order functions: take functions as parameters
+# - Recursive functions: call themselves
+
+# Summary
+# -------
+# - Functions are reusable blocks of code
+# - Use parameters to pass data into functions
+# - Use return statements to get data out
+# - Default parameters provide fallback values
+# - Functions improve code organization and reusability
+# - Write clear docstrings and use meaningful names
